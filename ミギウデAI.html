@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ミギウデAI - あなたの会社の経営課題、事業課題を、AIがまるっと解決。</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noto+Sans+JP:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* フォント設定 */
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+        }
+        /* スクロールスナップ（ヒーローセクション用） */
+        .snap-proximity {
+            scroll-snap-type: y proximity;
+        }
+        .snap-start {
+            scroll-snap-align: start;
+        }
+        /* グラデーションテキスト */
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        /* ヒーローセクションのグラデーションオーバーレイ */
+        .hero-overlay {
+            position: relative;
+        }
+        .hero-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* [修正] 緑系のグラデーションに変更 */
+            background-image: linear-gradient(180deg, rgba(240, 253, 244, 0) 60%, rgba(20, 184, 166, 0.05) 100%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 antialiased">
+
+    <!-- 1. ヘッダーナビゲーション -->
+    <header class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md shadow-sm z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- ロゴ -->
+                <a href="#" class="flex items-center space-x-2">
+                    <!-- [修正] 緑系のロゴ -->
+                    <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-green-600 to-teal-500">
+                        <i data-lucide="brain-circuit" class="w-5 h-5 text-white"></i>
+                    </span>
+                    <span class="text-xl font-bold text-gray-800">ミギウデAI</span>
+                </a>
+                
+                <!-- ナビゲーションメニュー (PC) -->
+                <div class="hidden md:flex md:items-center md:space-x-6">
+                    <a href="#features" class="text-gray-600 hover:text-green-700 font-medium transition duration-150">機能</a>
+                    <a href="#problem" class="text-gray-600 hover:text-green-700 font-medium transition duration-150">AI利用の格差</a>
+                    <a href="#how-to-use" class="text-gray-600 hover:text-green-700 font-medium transition duration-150">活用場面</a>
+                    <a href="#case-study" class="text-gray-600 hover:text-green-700 font-medium transition duration-150">活用事例</a>
+                    <a href="#pricing" class="text-gray-600 hover:text-green-700 font-medium transition duration-150">料金</a>
+                    <!-- [修正] プラン名変更 -->
+                    <a href="#support-plan" class="text-gray-600 hover:text-green-700 font-medium transition duration-150">導入支援プラン</a>
+                    <a href="#contact" class="group relative inline-flex items-center justify-center px-5 py-2 overflow-hidden font-medium text-white transition-all duration-300 bg-green-600 rounded-lg shadow-lg hover:bg-green-700">
+                        <span class="absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-green-700 rounded group-hover:-mr-4 group-hover:-mt-4">
+                            <span class="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"></span>
+                        </span>
+                        <span class="relative">お問い合わせ</span>
+                    </a>
+                </div>
+
+                <!-- モバイルメニューボタン -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500">
+                        <span class="sr-only">メインメニューを開く</span>
+                        <i data-lucide="menu" class="block h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- モバイルメニュー (非表示) -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-green-700">機能</a>
+                <a href="#problem" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-green-700">AI利用の格差</a>
+                <a href="#how-to-use" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-green-700">活用場面</a>
+                <a href="#case-study" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-green-700">活用事例</a>
+                <a href="#pricing" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-green-700">料金</a>
+                <!-- [修正] プラン名変更 -->
+                <a href="#support-plan" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-green-700">導入支援プラン</a>
+                <a href="#contact" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-white bg-green-600 hover:bg-green-700">お問い合わせ</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 2. ヒーローセクション -->
+        <section class="relative pt-24 lg:pt-32 pb-16 lg:pb-24 hero-overlay snap-start">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 hero-content">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                    <!-- 左: テキストコンテンツ -->
+                    <div class="text-center lg:text-left">
+                        <!-- [修正] 緑系のグラデーション -->
+                        <h1 class="text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight">
+                            <span class="block text-gray-900">あなたの会社の</span>
+                            <span class="block gradient-text bg-gradient-to-r from-green-600 to-teal-500 mt-2">経営課題、</span>
+                            <span class="block text-gray-900 mt-2">AIがまるっと解決。</span>
+                        </h1>
+                        <p class="mt-6 text-lg lg:text-xl text-gray-600 max-w-lg mx-auto lg:mx-0">
+                            「ミギウデAI」は、経営者から現場従業員まで、会社のあらゆる課題解決をサポートするAIパートナーです。売上アップ、生産性向上、採用・定着まで、すべてお任せください。
+                        </p>
+                        <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                            <!-- [修正] 緑系のボタン -->
+                            <a href="#contact" class="inline-flex items-center justify-center px-8 py-3.5 text-lg font-medium text-white bg-gradient-to-r from-green-600 to-teal-500 rounded-lg shadow-lg transform transition-transform hover:scale-105 duration-300 focus:outline-none focus:ring-4 focus:ring-green-300">
+                                まずは無料で相談する
+                                <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+                            </a>
+                            <a href="#features" class="inline-flex items-center justify-center px-8 py-3.5 text-lg font-medium text-green-700 bg-white rounded-lg shadow-md ring-1 ring-gray-200 hover:bg-gray-50 transform transition-transform hover:scale-105 duration-300 focus:outline-none focus:ring-4 focus:ring-gray-100">
+                                機能一覧を見る
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 右: サービスイメージ画像 -->
+                    <div class="flex justify-center">
+                        <!-- 
+                            [画像差し替え箇所] 
+                            [修正] src を新しくアップロードされた .jpg ファイルのIDに変更しました。
+                            
+                            本番環境に画像をアップロードした後は、この src="..." を
+                            本番サーバー上の画像の正しいパス (例: "/images/migiude_ai_screenshot.jpg") に書き換えてください。
+                        -->
+                        <img 
+                            id="hero-image"
+                            class="rounded-xl shadow-2xl border border-gray-200" 
+                            src="uploaded:スクリーンショット 2025-11-12 14.59.33.jpg-74cfb8f1-8327-4fcb-a749-0920bb5a7567" 
+                            alt="ミギウデAIの管理画面イメージ"
+                            <!-- プレースホルダー画像: 読み込み失敗時に表示 -->
+                            onerror="this.onerror=null; this.src='https://placehold.co/600x400/e2e8f0/9ca3af?text=Loading+Image...&font=noto-sans-jp'; this.alt='イメージ画像の読み込みに失敗しました';"
+                        >
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 日本市場のAI活用状況 (AI利用の格差) -->
+        <section id="problem" class="py-20 lg:py-28 bg-gray-900 text-white snap-start">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-base font-semibold text-green-400 tracking-wide uppercase">AI利用の格差</h2>
+                    <!-- [修正] 緑系のグラデーション -->
+                    <p class="mt-2 text-3xl lg:text-4xl font-extrabold tracking-tight">
+                        AIを「使う企業」と「使わない企業」
+                    </p>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-300">
+                        AIの導入は、もはや「検討」するものではなく「実行」するものです。<br>
+                        3年後、両者の間には決定的な競争力格差となります。
+                    </p>
+                </div>
+
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                    <!-- AIを使う場合 -->
+                    <!-- [修正] 緑系の強調 -->
+                    <div class="bg-gray-800 rounded-2xl shadow-lg p-8 border border-green-500/30">
+                        <div class="flex items-center">
+                            <i data-lucide="trending-up" class="h-10 w-10 text-green-500"></i>
+                            <!-- [修正] サービス名を削除 -->
+                            <h3 class="ml-4 text-2xl font-bold">AIを「使う」場合</h3>
+                        </div>
+                        <ul class="mt-6 space-y-4 text-gray-300">
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 flex-shrink-0 mt-1"></i>
+                                <span class="ml-3">定型業務が自動化され、従業員は高付加価値な業務に集中できる。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 flex-shrink-0 mt-1"></i>
+                                <span class="ml-3">データに基づいた正確な経営判断が瞬時に可能になる。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 flex-shrink-0 mt-1"></i>
+                                <span class="ml-3">新しいアイデアや戦略がAIとの対話で生まれ、イノベーションが加速する。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 flex-shrink-0 mt-1"></i>
+                                <span class="ml-3">個々の従業員にAI秘書がつき、全社の生産性が飛躍的に向上する。</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- AIを使わない場合 -->
+                    <div class="bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-700">
+                        <div class="flex items-center">
+                            <i data-lucide="trending-down" class="h-10 w-10 text-red-500"></i>
+                            <h3 class="ml-4 text-2xl font-bold">AIを「使わない」場合</h3>
+                        </div>
+                        <ul class="mt-6 space-y-4 text-gray-300">
+                            <li class="flex items-start">
+                                <i data-lucide="x-circle" class="w-6 h-6 text-red-500 flex-shrink-0 mt-1"></i>
+                                <span class="ml-3">時間のかかる定型業務にリソースが縛られ、人件費コストが増大し続ける。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="x-circle" class="w-6 h-6 text-red-500 flex-shrink-0 mt-1"></i>
+                                <span class="ml-3">競合他社がAIでコスト削減とサービス向上を進める中、市場シェアを奪われる。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="x-circle" class="w-6 h-6 text-red-500 flex-shrink-0 mt-1"></i>
+                                <span class="ml-3">「勘と経験」頼りの経営判断が続き、大きな経営ミスを犯すリスクが高まる。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="x-circle" class="w-6 h-6 text-red-500 flex-shrink-0 mt-1"></i>
+                                <span class="ml-3">生産性の低さから優秀な人材が流出し、採用もうまくいかなくなる。</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. 機能一覧 (Features) -->
+        <section id="features" class="py-20 lg:py-28 bg-white snap-start">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:text-center">
+                    <h2 class="text-base font-semibold text-green-700 tracking-wide uppercase">ミギウデAIの機能</h2>
+                    <p class="mt-2 text-3xl lg:text-4xl font-extrabold tracking-tight text-gray-900">
+                        経営の「すべて」を、このAIひとつで。
+                    </p>
+                    <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">
+                        日常の小さなタスクから、会社の未来を決める大きな戦略まで。
+                        ミギウデAIはあらゆる場面で経営者と従業員を強力にサポートします。
+                    </p>
+                </div>
+
+                <!-- [修正] 機能追加 (全15機能) -->
+                <div class="mt-16">
+                    <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-12">
+                        <!-- 経営・事業計画書作成 -->
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <!-- [修正] 緑系のアイコン -->
+                                <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg">
+                                    <i data-lucide="file-text" class="h-6 w-6"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <dt class="text-lg leading-6 font-bold text-gray-900">経営・事業計画書作成</dt>
+                                <dd class="mt-2 text-base text-gray-600">金融機関向けの経営革新計画や事業計画書、各種報告書をAIが素早くドラフト作成。論理的で説得力のある書類作成を支援します。</dd>
+                            </div>
+                        </div>
+
+                        <!-- 助成金・補助金診断 -->
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg">
+                                    <i data-lucide="lightbulb" class="h-6 w-6"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <dt class="text-lg leading-6 font-bold text-gray-900">助成金・補助金診断</dt>
+                                <dd class="mt-2 text-base text-gray-600">最新の公募情報をAIが常時監視。会社の状況をヒアリングし、受給可能性が最も高い助成金や補助金を自動でマッチング・提案します。</dd>
+                            </div>
+                        </div>
+
+                        <!-- 助成金・補助金 申請サポート -->
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg">
+                                    <i data-lucide="edit-3" class="h-6 w-6"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <dt class="text-lg leading-6 font-bold text-gray-900">助成金・補助金 申請サポート</dt>
+                                <dd class="mt-2 text-base text-gray-600">複雑な公募要領をAIが瞬時に解析。事業計画と連携し、採択率を高める申請書のドラフト作成から必要書類のチェックまでを一貫して支援します。</dd>
+                            </div>
+                        </div>
+
+                        <!-- 売上・財務分析 -->
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg">
+                                    <i data-lucide="pie-chart" class="h-6 w-6"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <dt class="text-lg leading-6 font-bold text-gray-900">売上・財務分析</dt>
+                                <dd class="mt-2 text-base text-gray-600">会計ソフトと連携し、リアルタイムで経営数値を分析。「今月、資金繰りが危ない兆候は？」など、自然な言葉で質問するだけでAIが問題点を指摘します。</dd>
+                            </div>
+                        </div>
+
+                        <!-- 事業戦略策定 -->
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg">
+                                    <i data-lucide="target" class="h-6 w-6"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <dt class="text-lg leading-6 font-bold text-gray-900">事業戦略策定</dt>
+                                <dd class="mt-2 text-base text-gray-600">営業、マーケティング、採用、商品開発など、事業推進に必要なあらゆる戦略をAIが壁打ち相手となって立案。業界トレンドや競合分析も瞬時に行います。</dd>
+                            </div>
+                        </div>
+
+                        <!-- 契約書・法務チェック -->
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg">
+                                    <i data-lucide="shield-check" class="h-6 w-6"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <dt class="text-lg leading-6 font-bold text-gray-900">契約書・法務チェック</dt>
+                                <dd class="mt-2 text-base text-gray-600">取引先から提示された契約書や、自社で作成した各種書類をAIが即座にレビュー。不利な条項や法務リスクがないか瞬時に特定し、修正案を提示します。</dd>
+                            </div>
+                        </div>
+
+                        <!-- 社内ナレッジ検索 -->
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg">
+                                    <i data-lucide="search" class="h-6 w-6"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <dt class="text-lg leading-6 font-bold text-gray-900">社内ナレッジ検索</dt>
+                                <dd class="mt-2 text-base text-gray-600">社内規定、過去の議事録、マニュアルなど、あらゆるドキュメントを学習。「あの件、どう対応した？」と聞くだけで、AIが瞬時に答えを見つけ出します。</dd>
+                            </div>
+                        </div>
+
+                        <!-- 採用・人事サポート -->
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg">
+                                    <i data-lucide="users" class="h-6 w-6"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <dt class="text-lg leading-6 font-bold text-gray-900">採用・人事サポート</dt>
+                                <dd class="mt-2 text-base text-gray-600">求人票の作成、エントリーシートの自動スクリーニング、面接日程の調整まで、煩雑な採用業務を自動化。人事評価制度の設計もサポートします。</dd>
+                            </div>
+                        </div>
+
+                        <!-- ヘルスケアサポート -->
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg">
+                                    <i data-lucide="heart-pulse" class="h-6 w-6"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <dt class="text-lg leading-6 font-bold text-gray-900">ヘルスケアサポート (にこっ)</dt>
+                                <dd class="mt-2 text-base text-gray-600">従業員の日々のチャットや業務状況からAIがストレスレベルを分析。不調の兆候を早期に検知し、メンタルヘルス不調を未然に防ぎます。</dd>
+                            </div>
+                        </div>
+
+                        <!-- 社員教育・リスキリング -->
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg">
+                                    <i data-lucide="graduation-cap" class="h-6 w-6"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <dt class="text-lg leading-6 font-bold text-gray-900">社員教育・リスキリング</dt>
+                                <dd class="mt-2 text-base text-gray-600">新人研修のオンボーディングから、中堅社員のスキルアップまで。AIが個々のレベルに合わせた教育プログラムを自動生成し、成長をサポートします。</dd>
+                            </div>
+                        </div>
+
+                        <!-- 資料作成・要約 -->
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg">
+                                    <i data-lucide="clipboard-list" class="h-6 w-6"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <dt class="text-lg leading-6 font-bold text-gray-900">資料作成・要約</dt>
+                                <dd class="mt-2 text-base text-gray-600">「次の会議のプレゼン資料、作っといて」の一言で、AIが関連データを集めて資料を自動作成。長い議事録やレポートの要約も一瞬で完了します。</dd>
+                            </div>
+                        </div>
+
+                        <!-- 顧客対応（メール・チャット） -->
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg">
+                                    <i data-lucide="mail" class="h-6 w-6"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <dt class="text-lg leading-6 font-bold text-gray-900">顧客対応（メール・チャット）</dt>
+                                <dd class="mt-2 text-base text-gray-600">よくある問い合わせにはAIが自動で回答。複雑な問い合わせのみを担当者にエスカレーションすることで、顧客満足度と業務効率を両立します。</dd>
+                            </div>
+                        </div>
+
+                        <!-- 日常業務の自動化 -->
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg">
+                                    <i data-lucide="bot" class="h-6 w-6"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <dt class="text-lg leading-6 font-bold text-gray-900">日常業務の自動化</dt>
+                                <dd class="mt-2 text-base text-gray-600">「毎月の請求書、発行して」「このExcelデータ、集計しといて」など、日々のルーティンワークをAIに丸投げ。時間を創造する働き方を実現します。</dd>
+                            </div>
+                        </div>
+
+                        <!-- 営業ロールプレイング -->
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg">
+                                    <i data-lucide="swords" class="h-6 w-6"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <dt class="text-lg leading-6 font-bold text-gray-900">営業ロールプレイング</dt>
+                                <dd class="mt-2 text-base text-gray-600">AIが「気難しい顧客」や「競合他社」になりきって、営業のロールプレイング相手に。24時間いつでも実践的な商談トレーニングが可能です。</dd>
+                            </div>
+                        </div>
+
+                        <!-- 業界動向リサーチ -->
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg">
+                                    <i data-lucide="trending-up" class="h-6 w-6"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <dt class="text-lg leading-6 font-bold text-gray-900">業界動向リサーチ</dt>
+                                <dd class="mt-2 text-base text-gray-600">「最近の◯◯業界のトレンドは？」「競合A社が新しい動きを見せた？」など、最新の市場動向をAIがリアルタイムで収集・分析し、レポートします。</dd>
+                            </div>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 5. どんな場面で使えるか (How to Use) -->
+        <section id="how-to-use" class="py-20 lg:py-28 bg-gray-50 snap-start">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                    <!-- 左: イメージ画像 -->
+                    <div class="flex justify-center">
+                        <img class="rounded-2xl shadow-xl" src="https://placehold.co/600x450/10b981/ffffff?text=Scene+1&font=noto-sans-jp" alt="AIが経営会議に参加しているイメージ">
+                    </div>
+                    
+                    <!-- 右: テキストコンテンツ -->
+                    <div>
+                        <h2 class="text-3xl lg:text-4xl font-extrabold tracking-tight text-gray-900">
+                            日常の「部分業務」から、<br>
+                            経営の「全体最適」まで。
+                        </h2>
+                        <p class="mt-6 text-lg text-gray-600">
+                            ミギウデAIは、単なる作業代行ツールではありません。経営者の「右腕」として、戦略的な意思決定をサポートします。
+                        </p>
+                        <dl class="mt-10 space-y-8">
+                            <div>
+                                <dt class="flex items-center">
+                                    <!-- [修正] 緑系のアイコン -->
+                                    <i data-lucide="user-check" class="w-7 h-7 text-green-700"></i>
+                                    <span class="ml-3 text-xl font-bold text-gray-900">経営者・役員向け</span>
+                                </dt>
+                                <dd class="mt-2 ml-10 text-base text-gray-600">
+                                    「次の取締役会資料を作って」「主要KPIの進捗を分析して」と指示するだけで、AIが経営判断に必要な情報を整理。資金繰りのシミュレーションや新規事業のリスク分析も瞬時に行います。
+                                </dd>
+                            </div>
+                            <div>
+                                <dt class="flex items-center">
+                                    <!-- [修正] 緑系のアイコン -->
+                                    <i data-lucide="users" class="w-7 h-7 text-green-700"></i>
+                                    <span class="ml-3 text-xl font-bold text-gray-900">管理職・マネージャー向け</span>
+                                </dt>
+                                <dd class="mt-2 ml-10 text-base text-gray-600">
+                                    部下の業務進捗管理、1on1の論点整理、チームの工数管理などをAIがサポート。採用面接の評価補助や、部下のメンタルヘルスケアまで行い、チームの生産性を最大化します。
+                                </dd>
+                            </div>
+                            <div>
+                                <dt class="flex items-center">
+                                    <!-- [修正] 緑系のアイコン -->
+                                    <i data-lucide="user" class="w-7 h-7 text-green-700"></i>
+                                    <span class="ml-3 text-xl font-bold text-gray-900">現場従業員向け</span>
+                                </dt>
+                                <dd class="mt-2 ml-10 text-base text-gray-600">
+                                    日報の作成、メールの返信、データ入力、議事録の要約など、あらゆるルーティンワークをAIが代行。いつでも質問できる「社内マニュアル」として、あなたの業務を効率化します。
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5.5. 活用事例 (新規追加) -->
+        <section id="case-study" class="py-20 lg:py-28 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-base font-semibold text-green-700 tracking-wide uppercase">活用事例</h2>
+                    <!-- [修正]: 実績がないため、想定される課題解決の表現に変更 -->
+                    <p class="mt-2 text-3xl lg:text-4xl font-extrabold tracking-tight text-gray-900">
+                        業種ごとの課題を、AIがこう解決します。
+                    </p>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">
+                        ミギウデAIは、業種特有の課題にも柔軟に対応し、具体的な解決策を提案します。
+                    </p>
+                </div>
+
+                <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    <!-- 製造業 -->
+                    <div class="flex flex-col bg-white rounded-2xl shadow-lg overflow-hidden transition hover:shadow-2xl">
+                        <div class="p-8 flex-grow">
+                            <div class="flex items-center">
+                                <!-- [修正] 緑系のアイコン -->
+                                <i data-lucide="factory" class="h-10 w-10 text-green-700"></i>
+                                <h3 class="ml-4 text-2xl font-bold">製造業</h3>
+                            </div>
+                            <!-- [修正]: 想定の表現に変更 -->
+                            <p class="mt-4 text-lg font-semibold text-gray-900">「ベテランのノウハウをAIで継承可能に」</p>
+                            <p class="mt-3 text-base text-gray-600">
+                                <span class="font-bold text-gray-800">課題:</span> 属人化しがちな製造ラインの調整技術を、どう若手に継承するかが長年の課題。<br>
+                                <!-- [修正]: 想定の表現（未来形・可能形）に変更 -->
+                                <span class="font-bold text-gray-800">活用（想定）:</span> ベテランの作業日報や調整マニュアルをAIに学習させ、「社内ナレッジ検索」を構築。トラブル発生時に若手がAIに質問することで、過去の最適な対処法が提示され、技術継承のスムーズな進行をサポートします。
+                            </p>
+                        </div>
+                        <div class="p-6 bg-gray-50 border-t border-gray-100">
+                            <!-- [修正]: 想定効果であることを明記 -->
+                            <p class="text-sm font-medium text-green-700">（想定効果）新人研修コスト 30%削減、ライン停止時間 15%短縮</p>
+                        </div>
+                    </div>
+
+                    <!-- 飲食業 -->
+                    <div class="flex flex-col bg-white rounded-2xl shadow-lg overflow-hidden transition hover:shadow-2xl">
+                        <div class="p-8 flex-grow">
+                            <div class="flex items-center">
+                                <!-- [修正] 緑系のアイコン -->
+                                <i data-lucide="utensils" class="h-10 w-10 text-green-700"></i>
+                                <h3 class="ml-4 text-2xl font-bold">飲食業</h3>
+                            </div>
+                            <!-- [修正]: 想定の表現に変更 -->
+                            <p class="mt-4 text-lg font-semibold text-gray-900">「AIによるシフト作成と発注業務の自動化」</p>
+                            <p class="mt-3 text-base text-gray-600">
+                                <span class="font-bold text-gray-800">課題:</span> 毎月のシフト作成と、天候や客入りに左右される食材発注が店長の大きな負担となっている。<br>
+                                <!-- [修正]: 想定の表現（未来形・可能形）に変更 -->
+                                <span class="font-bold text-gray-800">活用（想定）:</span> 過去の売上データと天気予報をAIに連携。「売上・財務分析」機能で来客数を予測し、AIが最適なシフト案と発注リストを自動作成。店長は最終確認だけで済むようになります。
+                            </p>
+                        </div>
+                        <div class="p-6 bg-gray-50 border-t border-gray-100">
+                            <!-- [修正]: 想定効果であることを明記 -->
+                            <p class="text-sm font-medium text-green-700">（想定効果）管理業務時間 50%削減、食材廃棄ロス 20%改善</p>
+                        </div>
+                    </div>
+
+                    <!-- IT・システム開発 -->
+                    <div class="flex flex-col bg-white rounded-2xl shadow-lg overflow-hidden transition hover:shadow-2xl">
+                        <div class="p-8 flex-grow">
+                            <div class="flex items-center">
+                                <!-- [修正] 緑系のアイコン -->
+                                <i data-lucide="server" class="h-10 w-10 text-green-700"></i>
+                                <h3 class="ml-4 text-2xl font-bold">IT・システム開発</h3>
+                            </div>
+                            <!-- [修正]: 想定の表現に変更 -->
+                            <p class="mt-4 text-lg font-semibold text-gray-900">「仕様書とテストコード作成をAIで効率化」</p>
+                            <p class="mt-3 text-base text-gray-600">
+                                <span class="font-bold text-gray-800">課題:</span> プロジェクトのドキュメント作成や、単純なテストコードの実装に多くの時間がかかっている。<br>
+                                <!-- [修正]: 想定の表現（未来形・可能形）に変更 -->
+                                <span class="font-bold text-gray-800">活用（想定）:</span> 「資料作成」機能で仕様書のドラフトをAIが作成。「法務チェック」機能でクライアントとの契約書をレビュー。簡単なテストコードも自動生成させ、エンジニアが開発に集中できる環境を整備します。
+                            </p>
+                        </div>
+                        <div class="p-6 bg-gray-50 border-t border-gray-100">
+                            <!-- [修正]: 想定効果であることを明記 -->
+                            <p class="text-sm font-medium text-green-700">（想定効果）法務チェック工数 70%削減、仕様書作成 50%短縮</p>
+                        </div>
+                    </div>
+
+                    <!-- 運送業 -->
+                    <div class="flex flex-col bg-white rounded-2xl shadow-lg overflow-hidden transition hover:shadow-2xl">
+                        <div class="p-8 flex-grow">
+                            <div class="flex items-center">
+                                <!-- [修正] 緑系のアイコン -->
+                                <i data-lucide="truck" class="h-10 w-10 text-green-700"></i>
+                                <h3 class="ml-4 text-2xl font-bold">運送業</h3>
+                            </div>
+                            <!-- [修正]: 想定の表現に変更 -->
+                            <p class="mt-4 text-lg font-semibold text-gray-900">「現場ドライバーからの問い合わせをAIで瞬時解決」</p>
+                            <p class="mt-3 text-base text-gray-600">
+                                <span class="font-bold text-gray-800">課題:</span> 現場ドライバーは社外にいる時間が大半。イレギュラー対応の確認で事務所に電話が殺到し、業務が頻繁に中断する。<br>
+                                <!-- [修正]: 想定の表現（未来形・可能形）に変更 -->
+                                <span class="font-bold text-gray-800">活用（想定）:</span> 過去の対応履歴や配送マニュアルをAIに学習。「社内ナレッジ検索」機能で、ドライバーがスマホからAIに質問するだけですぐに解決策を得られるようになり、事務所への電話が激減します。
+                            </p>
+                        </div>
+                        <div class="p-6 bg-gray-50 border-t border-gray-100">
+                            <!-- [修正]: 想定効果であることを明記 -->
+                            <p class="text-sm font-medium text-green-700">（想定効果）事務所への確認電話 80%削減、自己解決率 90%向上</p>
+                        </div>
+                    </div>
+
+                    <!-- 建設業 -->
+                    <div class="flex flex-col bg-white rounded-2xl shadow-lg overflow-hidden transition hover:shadow-2xl">
+                        <div class="p-8 flex-grow">
+                            <div class="flex items-center">
+                                <!-- [修正] 緑系のアイコン -->
+                                <i data-lucide="hard-hat" class="h-10 w-10 text-green-700"></i>
+                                <h3 class="ml-4 text-2xl font-bold">建設業</h3>
+                            </div>
+                            <!-- [修正]: 想定の表現に変更 -->
+                            <p class="mt-4 text-lg font-semibold text-gray-900">「現場業務と新人教育の両立を目指す」</p>
+                            <p class="mt-3 text-base text-gray-600">
+                                <span class="font-bold text-gray-800">課題:</span> 現場監督が多忙で、新人にOJTを行う時間が不足。安全教育や技術継承が課題となっている。<br>
+                                <!-- [修正]: 想定の表現（未来形・可能形）に変更 -->
+                                <span class="font-bold text-gray-800">活用（想定）:</span> 安全マニュアルや施工手順書を学習させた「社員教育・リスキリング」機能を活用。現場で不明点があれば新人がまずAIに質問し、基本業務を自己学習。現場監督は高度な判断が必要な業務に集中できます。
+                            </p>
+                        </div>
+                        <div class="p-6 bg-gray-50 border-t border-gray-100">
+                            <!-- [修正]: 想定効果であることを明記 -->
+                            <p class="text-sm font-medium text-green-700">（想定効果）新人教育コスト 40%削減、現場監督の管理工数 30%削減</p>
+                        </div>
+                    </div>
+
+                    <!-- 士業（会計・法務） -->
+                    <div class="flex flex-col bg-white rounded-2xl shadow-lg overflow-hidden transition hover:shadow-2xl">
+                        <div class="p-8 flex-grow">
+                            <div class="flex items-center">
+                                <!-- [修正] 緑系のアイコン -->
+                                <i data-lucide="briefcase" class="h-10 w-10 text-green-700"></i>
+                                <h3 class="ml-4 text-2xl font-bold">士業 (会計・法務)</h3>
+                            </div>
+                            <!-- [修正]: 想定の表現に変更 -->
+                            <p class="mt-4 text-lg font-semibold text-gray-900">「申請書類のドラフト作成をAIで高速化」</p>
+                            <p class="mt-3 text-base text-gray-600">
+                                <span class="font-bold text-gray-800">課題:</span> 顧問先ごとの助成金申請や各種届出書類の作成に、多くの定型作業時間が割かれている。<br>
+                                <!-- [修正]: 想定の表現（未来形・可能形）に変更 -->
+                                <span class="font-bold text-gray-800">活用（想定）:</span> 「助成金・補助金 申請サポート」機能を活用し、公募要領と顧問先情報を基に申請書類のドラフトをAIが自動生成。専門家は最終チェックと調整のみに集中でき、大幅な省力化が期待できます。
+                            </p>
+                        </div>
+                        <div class="p-6 bg-gray-50 border-t border-gray-100">
+                            <!-- [修正]: 想定効果であることを明記 -->
+                            <p class="text-sm font-medium text-green-700">（想定効果）書類作成時間 60%削減、月間対応可能件数 1.5倍</p>
+                        </div>
+                    </div>
+
+                    <!-- サービス業（介護・福祉） -->
+                    <div class="flex flex-col bg-white rounded-2xl shadow-lg overflow-hidden transition hover:shadow-2xl">
+                        <div class="p-8 flex-grow">
+                            <div class="flex items-center">
+                                <!-- [修正] 緑系のアイコン -->
+                                <i data-lucide="smile" class="h-10 w-10 text-green-700"></i>
+                                <h3 class="ml-4 text-2xl font-bold">サービス業 (介護・福祉)</h3>
+                            </div>
+                            <!-- [修正]: 想定の表現に変更 -->
+                            <p class="mt-4 text-lg font-semibold text-gray-900">「AIによる従業員のメンタルヘルスケア」</p>
+                            <p class="mt-3 text-base text-gray-600">
+                                <span class="font-bold text-gray-800">課題:</span> 対人援助職特有のストレスが高く、スタッフの離職が悩み。匿名アンケートでは本音が見えにくい。<br>
+                                <!-- [修正]: 想定の表現（未来形・可能形）に変更 -->
+                                <span class="font-bold text-gray-800">活用（想定）:</span> 「ヘルスケアサポート (にこっ)」機能を導入。日常のチャットからAIがストレスの兆候を検知し、管理者にアラート。深刻化する前に1on1ミーティングを設定するなど、予防的ケアが可能になります。
+                            </p>
+                        </div>
+                        <div class="p-6 bg-gray-50 border-t border-gray-100">
+                            <!-- [修正]: 想定効果であることを明記 -->
+                            <p class="text-sm font-medium text-green-700">（想定効果）早期不調者発見率 UP、離職率 8%改善</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. 料金案内 (Pricing) -->
+        <section id="pricing" class="py-20 lg:py-28 bg-white snap-start">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-base font-semibold text-green-700 tracking-wide uppercase">料金プラン</h2>
+                    <p class="mt-2 text-3xl lg:text-4xl font-extrabold tracking-tight text-gray-900">
+                        あなたの会社に最適なプランを。
+                    </p>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">
+                        わかりやすい2つのプランをご用意しました。まずはスタンダードからお試しください。
+                    </p>
+                    <p class="mt-2 text-sm text-gray-500">※初期費用として、別途10万円（税別）がかかります。</p>
+                </div>
+
+                <!-- [修正] 緑系の配色, おすすめバッジ削除 -->
+                <div class="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-4xl mx-auto">
+                    <!-- スタンダードプラン -->
+                    <div class="flex flex-col rounded-2xl shadow-lg border border-gray-200">
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold text-gray-900">スタンダードプラン</h3>
+                            <p class="mt-3 text-gray-600">まずはAIの力を実感したい企業様向け</p>
+                            <div class="mt-6">
+                                <span class="text-5xl font-extrabold text-gray-900">月額 5<span class="text-3xl font-semibold">万円</span></span>
+                                <span class="text-lg font-medium text-gray-600">〜 (税別)</span>
+                            </div>
+                            <p class="mt-4 text-base text-gray-600">基本費用 5万円 +<br>従業員1名あたり @5,000円</p>
+                        </div>
+                        <div class="p-8 bg-gray-50 rounded-b-2xl flex-grow">
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <i class="flex-shrink-0 w-6 h-6 text-green-600" data-lucide="check"></i>
+                                    <span class="ml-3 text-gray-700">AIチャット機能</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="flex-shrink-0 w-6 h-6 text-green-600" data-lucide="check"></i>
+                                    <span class="ml-3 text-gray-700">機能一覧の全機能（PRO版除く）</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="flex-shrink-0 w-6 h-6 text-green-600" data-lucide="check"></i>
+                                    <span class="ml-3 text-gray-700">社内ナレッジ学習</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="flex-shrink-0 w-6 h-6 text-green-600" data-lucide="check"></i>
+                                    <span class="ml-3 text-gray-700">メール・チャットサポート</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="p-6">
+                            <a href="#contact" class="w-full inline-flex items-center justify-center px-6 py-3 text-lg font-medium text-white bg-gradient-to-r from-green-600 to-teal-500 rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 transition duration-300">
+                                このプランで相談する
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- PROプラン -->
+                    <!-- [修正] おすすめバッジと強調スタイルを削除 -->
+                    <div class="flex flex-col rounded-2xl shadow-lg border border-gray-200">
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold text-gray-900">PROプラン</h3>
+                            <p class="mt-3 text-gray-600">高度な財務分析や専門家サポートが必要な企業様向け</p>
+                            <div class="mt-6">
+                                <span class="text-5xl font-extrabold text-gray-900">月額 7<span class="text-3xl font-semibold">万円</span></span>
+                                <span class="text-lg font-medium text-gray-600">〜 (税別)</span>
+                            </div>
+                            <p class="mt-4 text-base text-gray-600">基本費用 7万円 +<br>従業員1名あたり @5,000円</p>
+                        </div>
+                        <div class="p-8 bg-gray-50 rounded-b-2xl flex-grow">
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <i class="flex-shrink-0 w-6 h-6 text-green-600" data-lucide="check"></i>
+                                    <span class="ml-3 text-gray-700">スタンダードプランの全機能</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="flex-shrink-0 w-6 h-6 text-green-600" data-lucide="check"></i>
+                                    <span class="ml-3 font-semibold text-gray-900">高度な財務分析機能</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="flex-shrink-0 w-6 h-6 text-green-600" data-lucide="check"></i>
+                                    <span class="ml-3 font-semibold text-gray-900">金融機関・会計士向けレポート出力</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="flex-shrink-0 w-6 h-6 text-green-600" data-lucide="check"></i>
+                                    <span class="ml-3 text-gray-700">専門家によるオンラインサポート</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="p-6">
+                            <a href="#contact" class="w-full inline-flex items-center justify-center px-6 py-3 text-lg font-medium text-green-700 bg-white rounded-lg shadow-md ring-1 ring-gray-200 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-100 transition duration-300">
+                                PROプランで相談する
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. 導入支援プラン (旧 特別プラン) -->
+        <!-- [修正] IDとタイトルを変更 -->
+        <section id="support-plan" class="py-20 lg:py-28 bg-gradient-to-br from-green-700 to-teal-600 text-white snap-start">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <!-- [修正] 文言変更 -->
+                    <h2 class="text-3xl lg:text-4xl font-extrabold tracking-tight">
+                        AI導入費用が3年間実質無償になる<br>「導入支援プラン」もご用意。
+                    </h2>
+                    <p class="mt-6 max-w-3xl mx-auto text-lg text-green-100">
+                        AIツールを導入しても、社内で使われなければ意味がありません。<br>
+                        私たちは、AIをスムーズに業務で活用できるようになるための「リスキリング研修」をセットでご提供します。<br>
+                        助成金の活用（例：人材開発支援助成金）を前提としており、研修費用とAI利用料を相殺することで、実質的な費用負担を抑えた導入が可能になります。<br>
+                        （※無償提供の具体的な条件や助成金申請サポートについては、お問い合わせください。）
+                    </p>
+                </div>
+
+                <!-- [修正] 重複を削除し、緑系の配色に変更 -->
+                <div class="mt-16 max-w-4xl mx-auto bg-white/10 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-white/20">
+                    <h3 class="text-2xl font-bold text-center text-white">ミギウデAI 3年間ご利用シミュレーション</h3>
+                    <p class="text-center text-green-200 mt-2">（導入支援プラン適用により、下記利用料が実質無償となります）</p>
+                    
+                    <div class="overflow-x-auto mt-6">
+                        <table class="w-full text-left min-w-[600px]">
+                            <thead class="bg-white/20">
+                                <tr>
+                                    <th class="p-4 font-bold rounded-tl-lg">従業員数</th>
+                                    <th class="p-4 font-bold">スタンダードプラン月額</th>
+                                    <th class="p-4 font-bold">3年間のAI利用料 (合計)</th>
+                                    <th class="p-4 font-bold rounded-tr-lg">導入支援プラン適用</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/10">
+                                <tr class="hover:bg-white/5">
+                                    <td class="p-4 font-medium">10名</td>
+                                    <td class="p-4">100,000円 (基本5万 + ＠5,000円×10名)</td>
+                                    <td class="p-4 text-xl font-bold">360<span class="text-base font-medium">万円</span></td>
+                                    <td class="p-4 text-xl font-bold text-green-300">実質無償</td>
+                                </tr>
+                                <tr class="hover:bg-white/5">
+                                    <td class="p-4 font-medium">30名</td>
+                                    <td class="p-4">200,000円 (基本5万 + ＠5,000円×30名)</td>
+                                    <td class="p-4 text-xl font-bold">720<span class="text-base font-medium">万円</span></td>
+                                    <td class="p-4 text-xl font-bold text-green-300">実質無償</td>
+                                </tr>
+                                <tr class="hover:bg-white/5">
+                                    <td class="p-4 font-medium">50名</td>
+                                    <td class="p-4">300,000円 (基本5万 + ＠5,000円×50名)</td>
+                                    <td class="p-4 text-xl font-bold">1,080<span class="text-base font-medium">万円</span></td>
+                                    <td class="p-4 text-xl font-bold text-green-300">実質無償</td>
+                                </tr>
+                                <tr class="hover:bg-white/5">
+                                    <td class="p-4 font-medium rounded-bl-lg">100名</td>
+                                    <td class="p-4">550,000円 (基本5万 + ＠5,000円×100名)</td>
+                                    <td class="p-4 text-xl font-bold">1,980<span class="text-base font-medium">万円</span></td>
+                                    <td class="p-4 text-xl font-bold text-green-300 rounded-br-lg">実質無償</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-center text-sm text-green-200 mt-4">※上記シミュレーションはスタンダードプランの場合です。PROプランや初期費用、助成金の詳細についてはお問い合わせください。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. お問い合わせ (CTA) -->
+        <section id="contact" class="py-20 lg:py-28 bg-white snap-start">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <!-- [修正] 緑系のグラデーション -->
+                <h2 class="text-3xl lg:text-4xl font-extrabold tracking-tight">
+                    <span class="block text-gray-900">さあ、あなたの会社にも</span>
+                    <span class="block gradient-text bg-gradient-to-r from-green-600 to-teal-500 mt-2">最強の「右腕」を。</span>
+                </h2>
+                <p class="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
+                    AI導入は「今」が最適です。
+                    「何から相談していいかわからない」という段階でも構いません。
+                    まずは貴社の課題を私たちにお聞かせください。専門のコンサルタントがAI活用の最適なプランをご提案します。
+                </p>
+                <!-- [修正] 緑系のボタン -->
+                <div class="mt-10">
+                    <a href="#" class="inline-flex items-center justify-center px-10 py-4 text-xl font-medium text-white bg-gradient-to-r from-green-600 to-teal-500 rounded-lg shadow-xl transform transition-transform hover:scale-105 duration-300 focus:outline-none focus:ring-4 focus:ring-green-300">
+                        導入支援プランについて詳しく聞く
+                        <i data-lucide="arrow-right" class="w-6 h-6 ml-3"></i>
+                    </a>
+                </div>
+                <p class="mt-4 text-sm text-gray-500">ご相談・お見積りは無料です。お気軽にお問い合わせください。</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- 9. フッター -->
+    <footer class="bg-gray-900 text-gray-400">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- ロゴ・会社情報 -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <!-- [修正] 緑系のロゴ -->
+                        <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-green-600 to-teal-500">
+                            <i data-lucide="brain-circuit" class="w-5 h-5 text-white"></i>
+                        </span>
+                        <span class="text-xl font-bold text-white">ミギウデAI</span>
+                    </div>
+                    <p class="text-sm">株式会社西河マネジメントセンター</p>
+                    <p class="text-sm mt-2">〒618-0091<br>京都府乙訓郡大山崎町円明寺北浦2-6, 1-403</p>
+                </div>
+                
+                <!-- ナビゲーション 1 -->
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">メニュー</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#features" class="text-sm hover:text-white transition">機能</a></li>
+                        <li><a href="#problem" class="text-sm hover:text-white transition">AI利用の格差</a></li>
+                        <li><a href="#how-to-use" class="text-sm hover:text-white transition">活用場面</a></li>
+                        <li><a href="#case-study" class="text-sm hover:text-white transition">活用事例</a></li>
+                    </ul>
+                </div>
+
+                <!-- ナビゲーション 2 -->
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">プラン</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#pricing" class="text-sm hover:text-white transition">料金</a></li>
+                        <!-- [修正] プラン名変更 -->
+                        <li><a href="#support-plan" class="text-sm hover:text-white transition">導入支援プラン</a></li>
+                        <li><a href="#contact" class="text-sm hover:text-white transition">お問い合わせ</a></li>
+                    </ul>
+                </div>
+
+                <!-- 法務関連 -->
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">法務</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#" class="text-sm hover:text-white transition">プライバシーポリシー</a></li>
+                        <li><a href="#" class="text-sm hover:text-white transition">利用規約</a></li>
+                        <li><a href="#" class="text-sm hover:text-white transition">特定商取引法に基づく表記</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- コピーライト -->
+            <div class="mt-10 pt-8 border-t border-gray-800 text-sm text-center">
+                <p>&copy; 2024 Nishikawa Management Center Co., Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ReactとLucideの初期化スクリプト -->
+    <script type="module">
+        // Lucide Iconsの初期化
+        lucide.createIcons();
+
+        // モバイルメニューのトグル
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // スムーススクロール（ナビゲーションリンク用）
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // モバイルメニューが開いていたら閉じる
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
