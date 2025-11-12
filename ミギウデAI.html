@@ -113,19 +113,25 @@
         <!-- 2. ヒーローセクション -->
         <section class="relative pt-24 lg:pt-32 pb-16 lg:pb-24 hero-overlay snap-start">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 hero-content">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <!-- 
+                    [レイアウト修正]
+                    画像表示が環境によって不安定なため、ご指示通り画像セクションを削除しました。
+                    代わりに、テキストコンテンツを中央に配置し、ヒーローセクションとしてのインパクトを
+                    維持するデザインに変更しています。
+                -->
+                <div class="max-w-3xl mx-auto text-center">
                     <!-- 左: テキストコンテンツ -->
-                    <div class="text-center lg:text-left">
+                    <div>
                         <!-- [修正] 緑系のグラデーション -->
                         <h1 class="text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight">
                             <span class="block text-gray-900">あなたの会社の</span>
                             <span class="block gradient-text bg-gradient-to-r from-green-600 to-teal-500 mt-2">経営課題、</span>
                             <span class="block text-gray-900 mt-2">AIがまるっと解決。</span>
                         </h1>
-                        <p class="mt-6 text-lg lg:text-xl text-gray-600 max-w-lg mx-auto lg:mx-0">
+                        <p class="mt-6 text-lg lg:text-xl text-gray-600 max-w-lg mx-auto">
                             「ミギウデAI」は、経営者から現場従業員まで、会社のあらゆる課題解決をサポートするAIパートナーです。売上アップ、生産性向上、採用・定着まで、すべてお任せください。
                         </p>
-                        <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
                             <!-- [修正] 緑系のボタン -->
                             <a href="#contact" class="inline-flex items-center justify-center px-8 py-3.5 text-lg font-medium text-white bg-gradient-to-r from-green-600 to-teal-500 rounded-lg shadow-lg transform transition-transform hover:scale-105 duration-300 focus:outline-none focus:ring-4 focus:ring-green-300">
                                 まずは無料で相談する
@@ -137,24 +143,12 @@
                         </div>
                     </div>
                     
-                    <!-- 右: サービスイメージ画像 -->
+                    <!-- 右: サービスイメージ画像 (削除) -->
+                    <!-- 
                     <div class="flex justify-center">
-                        <!-- 
-                            [画像差し替え箇所] 
-                            [修正] src を新しくアップロードされた .jpg ファイルのIDに変更しました。
-                            
-                            本番環境に画像をアップロードした後は、この src="..." を
-                            本番サーバー上の画像の正しいパス (例: "/images/migiude_ai_screenshot.jpg") に書き換えてください。
-                        -->
-                        <img 
-                            id="hero-image"
-                            class="rounded-xl shadow-2xl border border-gray-200" 
-                            src="uploaded:スクリーンショット 2025-11-12 14.59.33.jpg-74cfb8f1-8327-4fcb-a749-0920bb5a7567" 
-                            alt="ミギウデAIの管理画面イメージ"
-                            <!-- プレースホルダー画像: 読み込み失敗時に表示 -->
-                            onerror="this.onerror=null; this.src='https://placehold.co/600x400/e2e8f0/9ca3af?text=Loading+Image...&font=noto-sans-jp'; this.alt='イメージ画像の読み込みに失敗しました';"
-                        >
+                        ...画像コード...
                     </div>
+                    -->
                 </div>
             </div>
         </section>
@@ -453,22 +447,31 @@
         <!-- 5. どんな場面で使えるか (How to Use) -->
         <section id="how-to-use" class="py-20 lg:py-28 bg-gray-50 snap-start">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                    <!-- 左: イメージ画像 -->
+                <!-- [修正] 1カラムレイアウトに変更 -->
+                <div class="grid grid-cols-1 gap-12 lg:gap-16 items-center">
+                    
+                    <!-- [修正] 画像を削除 -->
+                    <!-- 
                     <div class="flex justify-center">
                         <img class="rounded-2xl shadow-xl" src="https://placehold.co/600x450/10b981/ffffff?text=Scene+1&font=noto-sans-jp" alt="AIが経営会議に参加しているイメージ">
                     </div>
+                    -->
                     
-                    <!-- 右: テキストコンテンツ -->
-                    <div>
-                        <h2 class="text-3xl lg:text-4xl font-extrabold tracking-tight text-gray-900">
-                            日常の「部分業務」から、<br>
-                            経営の「全体最適」まで。
-                        </h2>
-                        <p class="mt-6 text-lg text-gray-600">
+                    <!-- [修正] テキストコンテンツを中央寄せにし、タイトルを装飾 -->
+                    <div class="text-center">
+                        <!-- [修正] タイトルを目立たせるために背景とパディングを追加 -->
+                        <div class="inline-block p-8 rounded-3xl bg-gradient-to-r from-green-600 to-teal-500 shadow-2xl">
+                            <h2 class="text-3xl lg:text-4xl font-extrabold tracking-tight text-white">
+                                日常の「部分業務」から、<br>
+                                経営の「全体最適」まで。
+                            </h2>
+                        </div>
+
+                        <p class="mt-8 text-lg text-gray-600 max-w-3xl mx-auto">
                             ミギウデAIは、単なる作業代行ツールではありません。経営者の「右腕」として、戦略的な意思決定をサポートします。
                         </p>
-                        <dl class="mt-10 space-y-8">
+                        <!-- [修正] 説明文は左寄せに戻すため max-w-3xl mx-auto text-left を指定 -->
+                        <dl class="mt-10 space-y-8 max-w-3xl mx-auto text-left">
                             <div>
                                 <dt class="flex items-center">
                                     <!-- [修正] 緑系のアイコン -->
