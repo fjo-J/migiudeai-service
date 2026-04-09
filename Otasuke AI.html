@@ -1,205 +1,169 @@
 <!DOCTYPE html>
-<html lang="ja" class="scroll-smooth">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>オタスケAI - あなたの会社の経営課題、事業課題を、AIがまるっと解決。</title>
-    <!-- Tailwind CSS CDN -->
+    <title>オタスケAI - 企業向けAIサービス | FAQ</title>
+    <meta name="description" content="オタスケAIは中小企業向けの総合的なAIアシスタントサービスです。経営判断から日常業務まで、よくある質問にお答えします。">
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons CDN -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Inter Font -->
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noto+Sans+JP:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
     <style>
-        /* フォント設定 */
-        body {
+        * {
             font-family: 'Inter', 'Noto Sans JP', sans-serif;
         }
-        /* スクロールスナップ（ヒーローセクション用） */
-        .snap-proximity {
-            scroll-snap-type: y proximity;
+        
+        html {
+            scroll-behavior: smooth;
         }
-        .snap-start {
-            scroll-snap-align: start;
+        
+        ::-webkit-scrollbar {
+            width: 10px;
         }
-        /* グラデーションテキスト */
-        .gradient-text {
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
         }
-        /* ヒーローセクションのグラデーションオーバーレイ */
-        .hero-overlay {
-            position: relative;
+        
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 5px;
         }
-        .hero-overlay::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: linear-gradient(180deg, rgba(240, 253, 244, 0) 60%, rgba(20, 184, 166, 0.05) 100%);
-            z-index: 1;
-        }
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-        /* 数値入力のスピンボタンを消す */
-        input[type=number]::-webkit-inner-spin-button, 
-        input[type=number]::-webkit-outer-spin-button { 
-            -webkit-appearance: none; 
-            margin: 0; 
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
         }
     </style>
 </head>
-<body class="bg-white text-gray-900 antialiased">
-
-    <!-- 1. ヘッダーナビゲーション -->
-    <header class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md shadow-sm z-50">
+<body class="bg-white text-gray-900">
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md shadow-sm z-50">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <!-- ロゴ -->
+                <!-- Logo -->
                 <a href="#" class="flex items-center">
-                    <img src="uploaded:オタスケAI logo.png-fdfe2b96-ae73-43e2-b652-a1a5855b7812" alt="オタスケAI ロゴ" class="h-10 w-auto">
+                    <span class="text-2xl font-bold text-green-600">オタスケAI</span>
                 </a>
                 
-                <!-- ナビゲーションメニュー (PC) -->
-                <div class="hidden md:flex md:items-center md:space-x-6">
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex md:items-center md:space-x-8">
+                    <a href="#hero" class="text-gray-600 hover:text-green-700 font-medium transition duration-150">トップ</a>
                     <a href="#features" class="text-gray-600 hover:text-green-700 font-medium transition duration-150">機能</a>
-                    <a href="#otasuke-fields" class="text-gray-600 hover:text-green-700 font-medium transition duration-150">得意分野</a>
-                    <a href="#how-to-use" class="text-gray-600 hover:text-green-700 font-medium transition duration-150">活用場面</a>
-                    <a href="#case-study" class="text-gray-600 hover:text-green-700 font-medium transition duration-150">活用事例</a>
-                    <a href="#pricing" class="text-gray-600 hover:text-green-700 font-medium transition duration-150">料金</a>
-                    <!-- [修正] リンク名を変更 -->
-                    <a href="#simulation" class="text-gray-600 hover:text-green-700 font-medium transition duration-150">シミュレーション</a>
-                    <a href="#contact" class="group relative inline-flex items-center justify-center px-5 py-2 overflow-hidden font-medium text-white transition-all duration-300 bg-green-600 rounded-lg shadow-lg hover:bg-green-700">
-                        <span class="absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-green-700 rounded group-hover:-mr-4 group-hover:-mt-4">
-                            <span class="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"></span>
-                        </span>
-                        <span class="relative">お問い合わせ</span>
+                    <a href="#gap" class="text-gray-600 hover:text-green-700 font-medium transition duration-150">AI利用の格差</a>
+                    <a href="#faq" class="text-gray-600 hover:text-green-700 font-medium transition duration-150">よくある質問</a>
+                    <a href="#contact" class="inline-flex items-center justify-center px-6 py-2.5 font-medium text-white bg-green-600 rounded-lg shadow-md hover:bg-green-700 transition">
+                        お問い合わせ
                     </a>
                 </div>
 
-                <!-- モバイルメニューボタン -->
+                <!-- Mobile Menu Button -->
                 <div class="md:hidden">
-                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500">
-                        <span class="sr-only">メインメニューを開く</span>
-                        <i data-lucide="menu" class="block h-6 w-6"></i>
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-100">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
                     </button>
                 </div>
             </div>
         </nav>
 
-        <!-- モバイルメニュー (非表示) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-200">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#hero" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-green-700">トップ</a>
                 <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-green-700">機能</a>
-                <a href="#otasuke-fields" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-green-700">得意分野</a>
-                <a href="#how-to-use" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-green-700">活用場面</a>
-                <a href="#pricing" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-green-700">料金</a>
-                <!-- [修正] リンク名を変更 -->
-                <a href="#simulation" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-green-700">シミュレーション</a>
+                <a href="#gap" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-green-700">AI利用の格差</a>
+                <a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-green-700">よくある質問</a>
                 <a href="#contact" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-white bg-green-600 hover:bg-green-700">お問い合わせ</a>
             </div>
         </div>
     </header>
 
     <main>
-        <!-- 2. ヒーローセクション -->
-        <section class="relative pt-24 lg:pt-32 pb-16 lg:pb-24 hero-overlay snap-start">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 hero-content">
+        <!-- Hero Section -->
+        <section id="hero" class="relative pt-24 lg:pt-32 pb-16 lg:pb-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-3xl mx-auto text-center">
-                    <div>
-                        <h1 class="text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight">
-                            <span class="block text-gray-900">あなたの会社の</span>
-                            <span class="block gradient-text bg-gradient-to-r from-green-600 to-teal-500 mt-2">経営課題、</span>
-                            <span class="block text-gray-900 mt-2">AIがまるっと解決。</span>
-                        </h1>
-                        <p class="mt-6 text-lg lg:text-xl text-gray-600 max-w-lg mx-auto">
-                            「オタスケAI」は、経営者から現場従業員まで、会社のあらゆる課題解決をサポートするAIパートナーです。売上アップ、生産性向上、採用・定着まで、すべてお任せください。
-                        </p>
-                        <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-                            <a href="#contact" class="inline-flex items-center justify-center px-8 py-3.5 text-lg font-medium text-white bg-gradient-to-r from-green-600 to-teal-500 rounded-lg shadow-lg transform transition-transform hover:scale-105 duration-300 focus:outline-none focus:ring-4 focus:ring-green-300">
-                                まずは無料で相談する
-                                <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
-                            </a>
-                            <a href="#features" class="inline-flex items-center justify-center px-8 py-3.5 text-lg font-medium text-green-700 bg-white rounded-lg shadow-md ring-1 ring-gray-200 hover:bg-gray-50 transform transition-transform hover:scale-105 duration-300 focus:outline-none focus:ring-4 focus:ring-green-100">
-                                機能一覧を見る
-                            </a>
-                        </div>
+                    <h1 class="text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight">
+                        <span class="block text-gray-900">あなたの会社の</span>
+                        <span class="block bg-gradient-to-r from-green-600 to-teal-500 bg-clip-text text-transparent mt-2">経営課題、</span>
+                        <span class="block text-gray-900 mt-2">AIがまるっと解決。</span>
+                    </h1>
+                    <p class="mt-6 text-lg lg:text-xl text-gray-600">
+                        「オタスケAI」は、経営者から現場従業員まで、会社のあらゆる課題解決をサポートするAIパートナーです。
+                    </p>
+                    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="#contact" class="inline-flex items-center justify-center px-8 py-3.5 text-lg font-medium text-white bg-gradient-to-r from-green-600 to-teal-500 rounded-lg shadow-lg hover:scale-105 transform transition">
+                            まずは無料で相談する
+                            <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+                        </a>
+                        <a href="#features" class="inline-flex items-center justify-center px-8 py-3.5 text-lg font-medium text-green-700 bg-white rounded-lg shadow-md ring-1 ring-gray-200 hover:bg-gray-50 transform transition">
+                            機能一覧を見る
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 3. 日本市場のAI活用状況 (AI利用の格差) -->
-        <section id="problem" class="py-20 lg:py-28 bg-gray-900 text-white snap-start">
+        <!-- AI Gap Section -->
+        <section id="gap" class="py-20 lg:py-28 bg-gray-900 text-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center">
+                <div class="text-center mb-16">
                     <h2 class="text-base font-semibold text-green-400 tracking-wide uppercase">AI利用の格差</h2>
-                    <p class="mt-2 text-3xl lg:text-4xl font-extrabold tracking-tight">
+                    <p class="mt-2 text-3xl lg:text-4xl font-extrabold">
                         AIを「使う企業」と「使わない企業」
                     </p>
                     <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-300">
-                        AIの導入は、もはや「検討」するものではなく「実行」するものです。<br>
-                        3年後、両者の間には決定的な競争力格差となります。
+                        3年後、両者の間には決定的な競争力格差が生まれます。
                     </p>
                 </div>
 
-                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-                    <!-- AIを使う場合 -->
-                    <div class="bg-gray-800 rounded-2xl shadow-lg p-8 border border-green-500/30">
-                        <div class="flex items-center">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-gray-800 rounded-2xl p-8 border border-green-500/30">
+                        <div class="flex items-center mb-6">
                             <i data-lucide="trending-up" class="h-10 w-10 text-green-500"></i>
                             <h3 class="ml-4 text-2xl font-bold">AIを「使う」場合</h3>
                         </div>
-                        <ul class="mt-6 space-y-4 text-gray-300">
+                        <ul class="space-y-4 text-gray-300">
                             <li class="flex items-start">
-                                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 flex-shrink-0 mt-1"></i>
+                                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 mt-1 flex-shrink-0"></i>
                                 <span class="ml-3">定型業務が自動化され、従業員は高付加価値な業務に集中できる。</span>
                             </li>
                             <li class="flex items-start">
-                                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 flex-shrink-0 mt-1"></i>
+                                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 mt-1 flex-shrink-0"></i>
                                 <span class="ml-3">データに基づいた正確な経営判断が瞬時に可能になる。</span>
                             </li>
                             <li class="flex items-start">
-                                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 flex-shrink-0 mt-1"></i>
-                                <span class="ml-3">新しいアイデアや戦略がAIとの対話で生まれ、イノベーションが加速する。</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 flex-shrink-0 mt-1"></i>
-                                <span class="ml-3">個々の従業員にAI秘書がつき、全社の生産性が飛躍的に向上する。</span>
+                                <i data-lucide="check-circle" class="w-6 h-6 text-green-500 mt-1 flex-shrink-0"></i>
+                                <span class="ml-3">全社の生産性が飛躍的に向上する。</span>
                             </li>
                         </ul>
                     </div>
                     
-                    <!-- AIを使わない場合 -->
-                    <div class="bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-700">
-                        <div class="flex items-center">
+                    <div class="bg-gray-800 rounded-2xl p-8 border border-gray-700">
+                        <div class="flex items-center mb-6">
                             <i data-lucide="trending-down" class="h-10 w-10 text-red-500"></i>
                             <h3 class="ml-4 text-2xl font-bold">AIを「使わない」場合</h3>
                         </div>
-                        <ul class="mt-6 space-y-4 text-gray-300">
+                        <ul class="space-y-4 text-gray-300">
                             <li class="flex items-start">
-                                <i data-lucide="x-circle" class="w-6 h-6 text-red-500 flex-shrink-0 mt-1"></i>
-                                <span class="ml-3">時間のかかる定型業務にリソースが縛られ、人件費コストが増大し続ける。</span>
+                                <i data-lucide="x-circle" class="w-6 h-6 text-red-500 mt-1 flex-shrink-0"></i>
+                                <span class="ml-3">定型業務にリソースが縛られ、人件費が増大し続ける。</span>
                             </li>
                             <li class="flex items-start">
-                                <i data-lucide="x-circle" class="w-6 h-6 text-red-500 flex-shrink-0 mt-1"></i>
-                                <span class="ml-3">競合他社がAIでコスト削減とサービス向上を進める中、市場シェアを奪われる。</span>
+                                <i data-lucide="x-circle" class="w-6 h-6 text-red-500 mt-1 flex-shrink-0"></i>
+                                <span class="ml-3">競合に市場シェアを奪われる。</span>
                             </li>
                             <li class="flex items-start">
-                                <i data-lucide="x-circle" class="w-6 h-6 text-red-500 flex-shrink-0 mt-1"></i>
-                                <span class="ml-3">「勘と経験」頼りの経営判断が続き、大きな経営ミスを犯すリスクが高まる。</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i data-lucide="x-circle" class="w-6 h-6 text-red-500 flex-shrink-0 mt-1"></i>
-                                <span class="ml-3">生産性の低さから優秀な人材が流出し、採用もうまくいかなくなる。</span>
+                                <i data-lucide="x-circle" class="w-6 h-6 text-red-500 mt-1 flex-shrink-0"></i>
+                                <span class="ml-3">優秀な人材が流出し、採用もうまくいかなくなる。</span>
                             </li>
                         </ul>
                     </div>
@@ -207,384 +171,532 @@
             </div>
         </section>
 
-        <!-- 4. 機能一覧 (Features) -->
-        <section id="features" class="py-20 lg:py-28 bg-white snap-start">
+        <!-- Features Section -->
+        <section id="features" class="py-20 lg:py-28 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="lg:text-center">
+                <div class="text-center mb-16">
                     <h2 class="text-base font-semibold text-green-700 tracking-wide uppercase">オタスケAIの機能</h2>
-                    <p class="mt-2 text-3xl lg:text-4xl font-extrabold tracking-tight text-gray-900">
+                    <p class="mt-2 text-3xl lg:text-4xl font-extrabold text-gray-900">
                         経営の「すべて」を、このAIひとつで。
                     </p>
                     <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">
-                        日常の小さなタスクから、会社の未来を決める大きな戦略まで。
-                        オタスケAIはあらゆる場面で経営者と従業員を強力にサポートします。
+                        補助金申請から人材採用まで、50以上の専門機能を搭載。
                     </p>
                 </div>
 
-                <div class="mt-16">
-                    <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-12">
-                        <!-- 機能群 (省略なし) -->
-                        <div class="flex"><div class="flex-shrink-0"><div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg"><i data-lucide="file-text" class="h-6 w-6"></i></div></div><div class="ml-4"><dt class="text-lg leading-6 font-bold text-gray-900">経営・事業計画書作成</dt><dd class="mt-2 text-base text-gray-600">金融機関向けの経営革新計画や事業計画書、各種報告書をAIが素早くドラフト作成。論理的で説得力のある書類作成を支援します。</dd></div></div>
-                        <div class="flex"><div class="flex-shrink-0"><div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg"><i data-lucide="lightbulb" class="h-6 w-6"></i></div></div><div class="ml-4"><dt class="text-lg leading-6 font-bold text-gray-900">助成金・補助金診断</dt><dd class="mt-2 text-base text-gray-600">最新の公募情報をAIが常時監視。会社の状況をヒアリングし、受給可能性が最も高い助成金や補助金を自動でマッチング・提案します。</dd></div></div>
-                        <div class="flex"><div class="flex-shrink-0"><div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg"><i data-lucide="edit-3" class="h-6 w-6"></i></div></div><div class="ml-4"><dt class="text-lg leading-6 font-bold text-gray-900">助成金・補助金 申請サポート</dt><dd class="mt-2 text-base text-gray-600">複雑な公募要領をAIが瞬時に解析。事業計画と連携し、採択率を高める申請書のドラフト作成から必要書類のチェックまでを一貫して支援します。</dd></div></div>
-                        <div class="flex"><div class="flex-shrink-0"><div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg"><i data-lucide="pie-chart" class="h-6 w-6"></i></div></div><div class="ml-4"><dt class="text-lg leading-6 font-bold text-gray-900">売上・財務分析</dt><dd class="mt-2 text-base text-gray-600">会計ソフトと連携し、リアルタイムで経営数値を分析。「今月、資金繰りが危ない兆候は？」など、自然な言葉で質問するだけでAIが問題点を指摘します。</dd></div></div>
-                        <div class="flex"><div class="flex-shrink-0"><div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg"><i data-lucide="target" class="h-6 w-6"></i></div></div><div class="ml-4"><dt class="text-lg leading-6 font-bold text-gray-900">事業戦略策定</dt><dd class="mt-2 text-base text-gray-600">営業、マーケティング、採用、商品開発など、事業推進に必要なあらゆる戦略をAIが壁打ち相手となって立案。業界トレンドや競合分析も瞬時に行います。</dd></div></div>
-                        <div class="flex"><div class="flex-shrink-0"><div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg"><i data-lucide="shield-check" class="h-6 w-6"></i></div></div><div class="ml-4"><dt class="text-lg leading-6 font-bold text-gray-900">契約書・法務チェック</dt><dd class="mt-2 text-base text-gray-600">取引先から提示された契約書や、自社で作成した各種書類をAIが即座にレビュー。不利な条項や法務リスクがないか瞬時に特定し、修正案を提示します。</dd></div></div>
-                        <div class="flex"><div class="flex-shrink-0"><div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg"><i data-lucide="search" class="h-6 w-6"></i></div></div><div class="ml-4"><dt class="text-lg leading-6 font-bold text-gray-900">社内ナレッジ検索</dt><dd class="mt-2 text-base text-gray-600">社内規定、過去の議事録、マニュアルなど、あらゆるドキュメントを学習。「あの件、どう対応した？」と聞くだけで、AIが瞬時に答えを見つけ出します。</dd></div></div>
-                        <div class="flex"><div class="flex-shrink-0"><div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg"><i data-lucide="users" class="h-6 w-6"></i></div></div><div class="ml-4"><dt class="text-lg leading-6 font-bold text-gray-900">採用・人事サポート</dt><dd class="mt-2 text-base text-gray-600">求人票の作成、エントリーシートの自動スクリーニング、面接日程の調整まで、煩雑な採用業務を自動化。人事評価制度の設計もサポートします。</dd></div></div>
-                        <div class="flex"><div class="flex-shrink-0"><div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg"><i data-lucide="heart-pulse" class="h-6 w-6"></i></div></div><div class="ml-4"><dt class="text-lg leading-6 font-bold text-gray-900">ヘルスケアサポート (にこっ)</dt><dd class="mt-2 text-base text-gray-600">従業員の日々のチャットや業務状況からAIがストレスレベルを分析。不調の兆候を早期に検知し、メンタルヘルス不調を未然に防ぎます。</dd></div></div>
-                        <div class="flex"><div class="flex-shrink-0"><div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg"><i data-lucide="graduation-cap" class="h-6 w-6"></i></div></div><div class="ml-4"><dt class="text-lg leading-6 font-bold text-gray-900">社員教育・リスキリング</dt><dd class="mt-2 text-base text-gray-600">新人研修のオンボーディングから、中堅社員のスキルアップまで。AIが個々のレベルに合わせた教育プログラムを自動生成し、成長をサポートします。</dd></div></div>
-                        <div class="flex"><div class="flex-shrink-0"><div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg"><i data-lucide="clipboard-list" class="h-6 w-6"></i></div></div><div class="ml-4"><dt class="text-lg leading-6 font-bold text-gray-900">資料作成・要約</dt><dd class="mt-2 text-base text-gray-600">「次の会議のプレゼン資料、作っといて」の一言で、AIが関連データを集めて資料を自動作成。長い議事録やレポートの要約も一瞬で完了します。</dd></div></div>
-                        <div class="flex"><div class="flex-shrink-0"><div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg"><i data-lucide="mail" class="h-6 w-6"></i></div></div><div class="ml-4"><dt class="text-lg leading-6 font-bold text-gray-900">顧客対応（メール・チャット）</dt><dd class="mt-2 text-base text-gray-600">よくある問い合わせにはAIが自動で回答。複雑な問い合わせのみを担当者にエスカレーションすることで、顧客満足度と業務効率を両立します。</dd></div></div>
-                        <div class="flex"><div class="flex-shrink-0"><div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg"><i data-lucide="bot" class="h-6 w-6"></i></div></div><div class="ml-4"><dt class="text-lg leading-6 font-bold text-gray-900">日常業務の自動化</dt><dd class="mt-2 text-base text-gray-600">「毎月の請求書、発行して」「このExcelデータ、集計しといて」など、日々のルーティンワークをAIに丸投げ。時間を創造する働き方を実現します。</dd></div></div>
-                        <div class="flex"><div class="flex-shrink-0"><div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg"><i data-lucide="swords" class="h-6 w-6"></i></div></div><div class="ml-4"><dt class="text-lg leading-6 font-bold text-gray-900">営業ロールプレイング</dt><dd class="mt-2 text-base text-gray-600">AIが「気難しい顧客」や「競合他社」になりきって、営業のロールプレイング相手に。24時間いつでも実践的な商談トレーニングが可能です。</dd></div></div>
-                        <div class="flex"><div class="flex-shrink-0"><div class="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-lg"><i data-lucide="trending-up" class="h-6 w-6"></i></div></div><div class="ml-4"><dt class="text-lg leading-6 font-bold text-gray-900">業界動向リサーチ</dt><dd class="mt-2 text-base text-gray-600">「最近の◯◯業界のトレンドは？」「競合A社が新しい動きを見せた？」など、最新の市場動向をAIがリアルタイムで収集・分析し、レポートします。</dd></div></div>
-                    </dl>
-                </div>
-            </div>
-        </section>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Feature Card 1 -->
+                    <div class="flex flex-col p-6 bg-white rounded-2xl shadow-lg border-2 border-blue-500 hover:shadow-2xl hover:-translate-y-2 transition-all">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-gradient-to-br from-blue-600 to-blue-500 text-white shadow-lg mb-3">
+                            <i data-lucide="building-2" class="h-6 w-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">経営・事業計画策定</h3>
+                        <p class="text-sm text-gray-600">経営判断に必要な計画立案、戦略策定をサポート</p>
+                    </div>
 
-        <!-- 3.5. オタスケAIの得意分野 -->
-        <section id="otasuke-fields" class="py-20 lg:py-28 bg-gray-50 snap-start">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center">
-                    <h2 class="text-base font-semibold text-green-700 tracking-wide uppercase">オタスケAIの得意分野</h2>
-                    <p class="mt-2 text-3xl lg:text-4xl font-extrabold tracking-tight text-gray-900">
-                        経営 / 事業のあらゆるシーンで全ての課題をオタスケ
-                    </p>
-                    <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">
-                        経営の根幹から現場のルーティンまで。「オタスケAI」が最も力を発揮する8つの分野です。
-                    </p>
-                </div>
+                    <!-- Feature Card 2 -->
+                    <div class="flex flex-col p-6 bg-white rounded-2xl shadow-lg border-2 border-emerald-500 hover:shadow-2xl hover:-translate-y-2 transition-all">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-gradient-to-br from-emerald-600 to-green-500 text-white shadow-lg mb-3">
+                            <i data-lucide="banknote" class="h-6 w-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">補助金・助成金申請</h3>
+                        <p class="text-sm text-gray-600">申請書類作成から採択まで一気通貫でサポート</p>
+                    </div>
 
-                <div class="mt-16 grid gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                    <!-- オタスケ分野 1〜8 (省略なし) -->
-                    <!-- 1. 売上アップ -->
-                    <div class="flex flex-col bg-white rounded-2xl shadow-xl p-6 border-t-4 border-green-500 transition hover:shadow-2xl">
-                        <div class="flex items-center space-x-3">
-                            <i data-lucide="trending-up" class="h-8 w-8 text-green-600"></i>
-                            <h3 class="text-xl font-bold text-gray-900">売上アップのオタスケ</h3>
+                    <!-- Feature Card 3 -->
+                    <div class="flex flex-col p-6 bg-white rounded-2xl shadow-lg border-2 border-purple-500 hover:shadow-2xl hover:-translate-y-2 transition-all">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-gradient-to-br from-purple-600 to-purple-500 text-white shadow-lg mb-3">
+                            <i data-lucide="line-chart" class="h-6 w-6"></i>
                         </div>
-                        <p class="mt-4 text-sm text-gray-600 flex-grow">市場動向の分析、競合リサーチ、効果的なマーケティング戦略の立案を支援し、売上増加に直結します。</p>
-                        <div class="mt-4 pt-4 border-t border-gray-100">
-                            <h4 class="text-sm font-bold text-gray-700 mb-2">主な活用機能</h4>
-                            <ul class="space-y-1 text-sm text-gray-600">
-                                <li class="flex items-center"><i data-lucide="arrow-right" class="w-4 h-4 mr-2 text-green-500"></i>事業戦略策定</li>
-                                <li class="flex items-center"><i data-lucide="arrow-right" class="w-4 h-4 mr-2 text-green-500"></i>営業ロールプレイング</li>
-                            </ul>
-                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">経営分析・課題解決</h3>
+                        <p class="text-sm text-gray-600">財務データから経営課題を可視化</p>
                     </div>
-                    <!-- 2. 資金繰り -->
-                    <div class="flex flex-col bg-white rounded-2xl shadow-xl p-6 border-t-4 border-green-500 transition hover:shadow-2xl">
-                        <div class="flex items-center space-x-3">
-                            <i data-lucide="banknote" class="h-8 w-8 text-green-600"></i>
-                            <h3 class="text-xl font-bold text-gray-900">資金繰りのオタスケ</h3>
+
+                    <!-- Feature Card 4 -->
+                    <div class="flex flex-col p-6 bg-white rounded-2xl shadow-lg border-2 border-orange-500 hover:shadow-2xl hover:-translate-y-2 transition-all">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-gradient-to-br from-orange-600 to-orange-500 text-white shadow-lg mb-3">
+                            <i data-lucide="users" class="h-6 w-6"></i>
                         </div>
-                        <p class="mt-4 text-sm text-gray-600 flex-grow">財務状況のリアルタイム分析や将来予測を行い、キャッシュフローの安定化を図ります。</p>
-                        <div class="mt-4 pt-4 border-t border-gray-100">
-                            <h4 class="text-sm font-bold text-gray-700 mb-2">主な活用機能</h4>
-                            <ul class="space-y-1 text-sm text-gray-600">
-                                <li class="flex items-center"><i data-lucide="arrow-right" class="w-4 h-4 mr-2 text-green-500"></i>売上・財務分析</li>
-                                <li class="flex items-center"><i data-lucide="arrow-right" class="w-4 h-4 mr-2 text-green-500"></i>経営・事業計画書作成</li>
-                            </ul>
-                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">人材採用・組織管理</h3>
+                        <p class="text-sm text-gray-600">採用から定着、育成まで包括的に支援</p>
                     </div>
-                    <!-- 3. ナレッジマネジメント -->
-                    <div class="flex flex-col bg-white rounded-2xl shadow-xl p-6 border-t-4 border-green-500 transition hover:shadow-2xl">
-                        <div class="flex items-center space-x-3">
-                            <i data-lucide="database" class="h-8 w-8 text-green-600"></i>
-                            <h3 class="text-xl font-bold text-gray-900">ナレッジマネジメントのオタスケ</h3>
+
+                    <!-- Feature Card 5 -->
+                    <div class="flex flex-col p-6 bg-white rounded-2xl shadow-lg border-2 border-pink-500 hover:shadow-2xl hover:-translate-y-2 transition-all">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-gradient-to-br from-pink-600 to-pink-500 text-white shadow-lg mb-3">
+                            <i data-lucide="megaphone" class="h-6 w-6"></i>
                         </div>
-                        <p class="mt-4 text-sm text-gray-600 flex-grow">社内の暗黙知やマニュアルをAIが集約・整理。いつでも必要な情報にアクセスできます。</p>
-                        <div class="mt-4 pt-4 border-t border-gray-100">
-                            <h4 class="text-sm font-bold text-gray-700 mb-2">主な活用機能</h4>
-                            <ul class="space-y-1 text-sm text-gray-600">
-                                <li class="flex items-center"><i data-lucide="arrow-right" class="w-4 h-4 mr-2 text-green-500"></i>社内ナレッジ検索</li>
-                                <li class="flex items-center"><i data-lucide="arrow-right" class="w-4 h-4 mr-2 text-green-500"></i>社員教育・リスキリング</li>
-                            </ul>
-                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">マーケティング・集客</h3>
+                        <p class="text-sm text-gray-600">市場分析から集客まで科学的にサポート</p>
                     </div>
-                    <!-- 4. ストレスケア -->
-                    <div class="flex flex-col bg-white rounded-2xl shadow-xl p-6 border-t-4 border-green-500 transition hover:shadow-2xl">
-                        <div class="flex items-center space-x-3">
-                            <i data-lucide="heart" class="h-8 w-8 text-green-600"></i>
-                            <h3 class="text-xl font-bold text-gray-900">ストレスケアのオタスケ</h3>
+
+                    <!-- Feature Card 6 -->
+                    <div class="flex flex-col p-6 bg-white rounded-2xl shadow-lg border-2 border-indigo-500 hover:shadow-2xl hover:-translate-y-2 transition-all">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-gradient-to-br from-indigo-600 to-indigo-500 text-white shadow-lg mb-3">
+                            <i data-lucide="phone" class="h-6 w-6"></i>
                         </div>
-                        <p class="mt-4 text-sm text-gray-600 flex-grow">従業員のメンタルヘルスをAIが継続的にモニタリング。不調の予兆を早期に察知し、離職リスクを軽減します。</p>
-                        <div class="mt-4 pt-4 border-t border-gray-100">
-                            <h4 class="text-sm font-bold text-gray-700 mb-2">主な活用機能</h4>
-                            <ul class="space-y-1 text-sm text-gray-600">
-                                <li class="flex items-center"><i data-lucide="arrow-right" class="w-4 h-4 mr-2 text-green-500"></i>ヘルスケアサポート (にこっ)</li>
-                                <li class="flex items-center"><i data-lucide="arrow-right" class="w-4 h-4 mr-2 text-green-500"></i>採用・人事サポート</li>
-                            </ul>
-                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">営業支援・トレーニング</h3>
+                        <p class="text-sm text-gray-600">営業スキル向上と商談成功率アップ</p>
                     </div>
-                    <!-- 5. 採用 -->
-                    <div class="flex flex-col bg-white rounded-2xl shadow-xl p-6 border-t-4 border-green-500 transition hover:shadow-2xl">
-                        <div class="flex items-center space-x-3">
-                            <i data-lucide="users-round" class="h-8 w-8 text-green-600"></i>
-                            <h3 class="text-xl font-bold text-gray-900">採用のオタスケ</h3>
+
+                    <!-- Feature Card 7 -->
+                    <div class="flex flex-col p-6 bg-white rounded-2xl shadow-lg border-2 border-teal-500 hover:shadow-2xl hover:-translate-y-2 transition-all">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-gradient-to-br from-teal-600 to-teal-500 text-white shadow-lg mb-3">
+                            <i data-lucide="book-open" class="h-6 w-6"></i>
                         </div>
-                        <p class="mt-4 text-sm text-gray-600 flex-grow">求人票作成から面接日程調整、評価補助まで、採用プロセス全体を効率化し、優秀な人材の確保を支援します。</p>
-                        <div class="mt-4 pt-4 border-t border-gray-100">
-                            <h4 class="text-sm font-bold text-gray-700 mb-2">主な活用機能</h4>
-                            <ul class="space-y-1 text-sm text-gray-600">
-                                <li class="flex items-center"><i data-lucide="arrow-right" class="w-4 h-4 mr-2 text-green-500"></i>採用・人事サポート</li>
-                                <li class="flex items-center"><i data-lucide="arrow-right" class="w-4 h-4 mr-2 text-green-500"></i>営業ロールプレイング (面接練習)</li>
-                            </ul>
-                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">ナレッジマネジメント</h3>
+                        <p class="text-sm text-gray-600">社内の知識を集約し全社員の成長を加速</p>
                     </div>
-                    <!-- 6. 生産性向上 -->
-                    <div class="flex flex-col bg-white rounded-2xl shadow-xl p-6 border-t-4 border-green-500 transition hover:shadow-2xl">
-                        <div class="flex items-center space-x-3">
-                            <i data-lucide="rocket" class="h-8 w-8 text-green-600"></i>
-                            <h3 class="text-xl font-bold text-gray-900">生産性向上のオタスケ</h3>
+
+                    <!-- Feature Card 8 -->
+                    <div class="flex flex-col p-6 bg-white rounded-2xl shadow-lg border-2 border-cyan-500 hover:shadow-2xl hover:-translate-y-2 transition-all">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-xl bg-gradient-to-br from-cyan-600 to-cyan-500 text-white shadow-lg mb-3">
+                            <i data-lucide="bot" class="h-6 w-6"></i>
                         </div>
-                        <p class="mt-4 text-sm text-gray-600 flex-grow">日常業務の自動化や、データに基づいた業務フローの改善提案により、全社の業務効率を劇的に改善します。</p>
-                        <div class="mt-4 pt-4 border-t border-gray-100">
-                            <h4 class="text-sm font-bold text-gray-700 mb-2">主な活用機能</h4>
-                            <ul class="space-y-1 text-sm text-gray-600">
-                                <li class="flex items-center"><i data-lucide="arrow-right" class="w-4 h-4 mr-2 text-green-500"></i>日常業務の自動化</li>
-                                <li class="flex items-center"><i data-lucide="arrow-right" class="w-4 h-4 mr-2 text-green-500"></i>顧客対応（メール・チャット）</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- 7. 資料作り -->
-                    <div class="flex flex-col bg-white rounded-2xl shadow-xl p-6 border-t-4 border-green-500 transition hover:shadow-2xl">
-                        <div class="flex items-center space-x-3">
-                            <i data-lucide="clipboard-list" class="h-8 w-8 text-green-600"></i>
-                            <h3 class="text-xl font-bold text-gray-900">資料作りのオタスケ</h3>
-                        </div>
-                        <p class="mt-4 text-sm text-gray-600 flex-grow">会議資料、営業提案書、報告書など、あらゆるビジネス文書のドラフト作成・要約をAIが代行します。</p>
-                        <div class="mt-4 pt-4 border-t border-gray-100">
-                            <h4 class="text-sm font-bold text-gray-700 mb-2">主な活用機能</h4>
-                            <ul class="space-y-1 text-sm text-gray-600">
-                                <li class="flex items-center"><i data-lucide="arrow-right" class="w-4 h-4 mr-2 text-green-500"></i>資料作成・要約</li>
-                                <li class="flex items-center"><i data-lucide="arrow-right" class="w-4 h-4 mr-2 text-green-500"></i>経営・事業計画書作成</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- 8. 補助金助成金申請 -->
-                    <div class="flex flex-col bg-white rounded-2xl shadow-xl p-6 border-t-4 border-green-500 transition hover:shadow-2xl">
-                        <div class="flex items-center space-x-3">
-                            <i data-lucide="award" class="h-8 w-8 text-green-600"></i>
-                            <h3 class="text-xl font-bold text-gray-900">補助金助成金申請のオタスケ</h3>
-                        </div>
-                        <p class="mt-4 text-sm text-gray-600 flex-grow">最新の公募情報から最適なものを提案し、複雑な申請書類の作成まで一気通貫で支援します。</p>
-                        <div class="mt-4 pt-4 border-t border-gray-100">
-                            <h4 class="text-sm font-bold text-gray-700 mb-2">主な活用機能</h4>
-                            <ul class="space-y-1 text-sm text-gray-600">
-                                <li class="flex items-center"><i data-lucide="arrow-right" class="w-4 h-4 mr-2 text-green-500"></i>助成金・補助金診断</li>
-                                <li class="flex items-center"><i data-lucide="arrow-right" class="w-4 h-4 mr-2 text-green-500"></i>助成金・補助金 申請サポート</li>
-                            </ul>
-                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">経営アシスタント</h3>
+                        <p class="text-sm text-gray-600">日常業務を自動化し経営者の時間を創出</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 5. どんな場面で使えるか (How to Use) -->
-        <section id="how-to-use" class="py-20 lg:py-28 bg-white snap-start">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 gap-12 lg:gap-16 items-center">
-                    <div class="text-center">
-                        <div class="inline-block p-8 rounded-3xl bg-gradient-to-r from-green-600 to-teal-500 shadow-2xl">
-                            <h2 class="text-3xl lg:text-4xl font-extrabold tracking-tight text-white">
-                                日常の「部分業務」から、<br>
-                                経営の「全体最適」まで。
-                            </h2>
-                        </div>
-                        <p class="mt-8 text-lg text-gray-600 max-w-3xl mx-auto">
-                            オタスケAIは、単なる作業代行ツールではありません。経営者の「右腕」として、戦略的な意思決定をサポートします。
-                        </p>
-                        <dl class="mt-10 space-y-8 max-w-3xl mx-auto text-left">
-                            <!-- 活用シーンリスト -->
-                            <div><dt class="flex items-center"><i data-lucide="user-check" class="w-7 h-7 text-green-700"></i><span class="ml-3 text-xl font-bold text-gray-900">経営者・役員向け</span></dt><dd class="mt-2 ml-10 text-base text-gray-600">「次の取締役会資料を作って」「主要KPIの進捗を分析して」と指示するだけで、AIが経営判断に必要な情報を整理。資金繰りのシミュレーションや新規事業のリスク分析も瞬時に行います。</dd></div>
-                            <div><dt class="flex items-center"><i data-lucide="users" class="w-7 h-7 text-green-700"></i><span class="ml-3 text-xl font-bold text-gray-900">管理職・マネージャー向け</span></dt><dd class="mt-2 ml-10 text-base text-gray-600">部下の業務進捗管理、1on1の論点整理、チームの工数管理などをAIがサポート。採用面接の評価補助や、部下のメンタルヘルスケアまで行い、チームの生産性を最大化します。</dd></div>
-                            <div><dt class="flex items-center"><i data-lucide="user" class="w-7 h-7 text-green-700"></i><span class="ml-3 text-xl font-bold text-gray-900">現場従業員向け</span></dt><dd class="mt-2 ml-10 text-base text-gray-600">日報の作成、メールの返信、データ入力、議事録の要約など、あらゆるルーティンワークをAIが代行。いつでも質問できる「社内マニュアル」として、あなたの業務を効率化します。</dd></div>
-                        </dl>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5.5. 活用事例 -->
-        <section id="case-study" class="py-20 lg:py-28 bg-gray-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center">
-                    <h2 class="text-base font-semibold text-green-700 tracking-wide uppercase">活用事例</h2>
-                    <p class="mt-2 text-3xl lg:text-4xl font-extrabold tracking-tight text-gray-900">
-                        業種ごとの課題を、AIがこう解決します。
-                    </p>
+        <!-- FAQ Section -->
+        <section id="faq" class="py-20 lg:py-28 bg-gray-50">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center mb-16">
+                    <h2 class="text-base font-semibold text-green-700 tracking-wide uppercase">よくある質問</h2>
+                    <p class="mt-2 text-3xl lg:text-4xl font-extrabold text-gray-900">FAQ</p>
                     <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">
-                        オタスケAIは、業種特有の課題にも柔軟に対応し、具体的な解決策を提案します。
-                    </p>
-                </div>
-                <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                    <!-- 各業種の事例 (省略なし) -->
-                    <!-- 製造業 -->
-                    <div class="flex flex-col bg-white rounded-2xl shadow-lg overflow-hidden transition hover:shadow-2xl"><div class="p-8 flex-grow"><div class="flex items-center"><i data-lucide="factory" class="h-10 w-10 text-green-700"></i><h3 class="ml-4 text-2xl font-bold">製造業</h3></div><p class="mt-4 text-lg font-semibold text-gray-900">「ベテランのノウハウをAIで継承可能に」</p><p class="mt-3 text-base text-gray-600"><span class="font-bold text-gray-800">課題:</span> 属人化しがちな製造ラインの調整技術を、どう若手に継承するかが長年の課題。<br><span class="font-bold text-gray-800">活用（想定）:</span> ベテランの作業日報や調整マニュアルをAIに学習させ、「社内ナレッジ検索」を構築。トラブル発生時に若手がAIに質問することで、過去の最適な対処法が提示され、技術継承のスムーズな進行をサポートします。</p></div><div class="p-6 bg-gray-50 border-t border-gray-100"><p class="text-sm font-medium text-green-700">（想定効果）新人研修コスト 30%削減、ライン停止時間 15%短縮</p></div></div>
-                    <!-- 飲食業 -->
-                    <div class="flex flex-col bg-white rounded-2xl shadow-lg overflow-hidden transition hover:shadow-2xl"><div class="p-8 flex-grow"><div class="flex items-center"><i data-lucide="utensils" class="h-10 w-10 text-green-700"></i><h3 class="ml-4 text-2xl font-bold">飲食業</h3></div><p class="mt-4 text-lg font-semibold text-gray-900">「AIによるシフト作成と発注業務の自動化」</p><p class="mt-3 text-base text-gray-600"><span class="font-bold text-gray-800">課題:</span> 毎月のシフト作成と、天候や客入りに左右される食材発注が店長の大きな負担となっている。<br><span class="font-bold text-gray-800">活用（想定）:</span> 過去の売上データと天気予報をAIに連携。「売上・財務分析」機能で来客数を予測し、AIが最適なシフト案と発注リストを自動作成。店長は最終確認だけで済むようになります。</p></div><div class="p-6 bg-gray-50 border-t border-gray-100"><p class="text-sm font-medium text-green-700">（想定効果）管理業務時間 50%削減、食材廃棄ロス 20%改善</p></div></div>
-                    <!-- IT・システム開発 -->
-                    <div class="flex flex-col bg-white rounded-2xl shadow-lg overflow-hidden transition hover:shadow-2xl"><div class="p-8 flex-grow"><div class="flex items-center"><i data-lucide="server" class="h-10 w-10 text-green-700"></i><h3 class="ml-4 text-2xl font-bold">IT・システム開発</h3></div><p class="mt-4 text-lg font-semibold text-gray-900">「仕様書とテストコード作成をAIで効率化」</p><p class="mt-3 text-base text-gray-600"><span class="font-bold text-gray-800">課題:</span> プロジェクトのドキュメント作成や、単純なテストコードの実装に多くの時間がかかっている。<br><span class="font-bold text-gray-800">活用（想定）:</span> 「資料作成」機能で仕様書のドラフトをAIが作成。「法務チェック」機能でクライアントとの契約書をレビュー。簡単なテストコードも自動生成させ、エンジニアが開発に集中できる環境を整備します。</p></div><div class="p-6 bg-gray-50 border-t border-gray-100"><p class="text-sm font-medium text-green-700">（想定効果）法務チェック工数 70%削減、仕様書作成 50%短縮</p></div></div>
-                    <!-- 運送業 -->
-                    <div class="flex flex-col bg-white rounded-2xl shadow-lg overflow-hidden transition hover:shadow-2xl"><div class="p-8 flex-grow"><div class="flex items-center"><i data-lucide="truck" class="h-10 w-10 text-green-700"></i><h3 class="ml-4 text-2xl font-bold">運送業</h3></div><p class="mt-4 text-lg font-semibold text-gray-900">「現場ドライバーからの問い合わせをAIで瞬時解決」</p><p class="mt-3 text-base text-gray-600"><span class="font-bold text-gray-800">課題:</span> 現場ドライバーは社外にいる時間が大半。イレギュラー対応の確認で事務所に電話が殺到し、業務が頻繁に中断する。<br><span class="font-bold text-gray-800">活用（想定）:</span> 過去の対応履歴や配送マニュアルをAIに学習。「社内ナレッジ検索」機能で、ドライバーがスマホからAIに質問するだけですぐに解決策を得られるようになり、事務所への電話が激減します。</p></div><div class="p-6 bg-gray-50 border-t border-gray-100"><p class="text-sm font-medium text-green-700">（想定効果）事務所への確認電話 80%削減、自己解決率 90%向上</p></div></div>
-                    <!-- 建設業 -->
-                    <div class="flex flex-col bg-white rounded-2xl shadow-lg overflow-hidden transition hover:shadow-2xl"><div class="p-8 flex-grow"><div class="flex items-center"><i data-lucide="hard-hat" class="h-10 w-10 text-green-700"></i><h3 class="ml-4 text-2xl font-bold">建設業</h3></div><p class="mt-4 text-lg font-semibold text-gray-900">「現場業務と新人教育の両立を目指す」</p><p class="mt-3 text-base text-gray-600"><span class="font-bold text-gray-800">課題:</span> 現場監督が多忙で、新人にOJTを行う時間が不足。安全教育や技術継承が課題となっている。<br><span class="font-bold text-gray-800">活用（想定）:</span> 安全マニュアルや施工手順書を学習させた「社員教育・リスキリング」機能を活用。現場で不明点があれば新人がまずAIに質問し、基本業務を自己学習。現場監督は高度な判断が必要な業務に集中できます。</p></div><div class="p-6 bg-gray-50 border-t border-gray-100"><p class="text-sm font-medium text-green-700">（想定効果）新人教育コスト 40%削減、現場監督の管理工数 30%削減</p></div></div>
-                    <!-- 士業（会計・法務） -->
-                    <div class="flex flex-col bg-white rounded-2xl shadow-lg overflow-hidden transition hover:shadow-2xl"><div class="p-8 flex-grow"><div class="flex items-center"><i data-lucide="briefcase" class="h-10 w-10 text-green-700"></i><h3 class="ml-4 text-2xl font-bold">士業 (会計・法務)</h3></div><p class="mt-4 text-lg font-semibold text-gray-900">「申請書類のドラフト作成をAIで高速化」</p><p class="mt-3 text-base text-gray-600"><span class="font-bold text-gray-800">課題:</span> 顧問先ごとの助成金申請や各種届出書類の作成に、多くの定型作業時間が割かれている。<br><span class="font-bold text-gray-800">活用（想定）:</span> 「助成金・補助金 申請サポート」機能を活用し、公募要領と顧問先情報を基に申請書類のドラフトをAIが自動生成。専門家は最終チェックと調整のみに集中でき、大幅な省力化が期待できます。</p></div><div class="p-6 bg-gray-50 border-t border-gray-100"><p class="text-sm font-medium text-green-700">（想定効果）書類作成時間 60%削減、月間対応可能件数 1.5倍</p></div></div>
-                    <!-- サービス業（介護・福祉） -->
-                    <div class="flex flex-col bg-white rounded-2xl shadow-lg overflow-hidden transition hover:shadow-2xl md:col-span-2 lg:col-span-1"><div class="p-8 flex-grow"><div class="flex items-center"><i data-lucide="smile" class="h-10 w-10 text-green-700"></i><h3 class="ml-4 text-2xl font-bold">サービス業 (介護・福祉)</h3></div><p class="mt-4 text-lg font-semibold text-gray-900">「AIによる従業員のメンタルヘルスケア」</p><p class="mt-3 text-base text-gray-600"><span class="font-bold text-gray-800">課題:</span> 対人援助職特有のストレスが高く、スタッフの離職が悩み。匿名アンケートでは本音が見えにくい。<br><span class="font-bold text-gray-800">活用（想定）:</span> 「ヘルスケアサポート (にこっ)」機能を導入。日常のチャットからAIがストレスの兆候を検知し、管理者にアラート。深刻化する前に1on1ミーティングを設定するなど、予防的ケアが可能になります。</p></div><div class="p-6 bg-gray-50 border-t border-gray-100"><p class="text-sm font-medium text-green-700">（想定効果）早期不調者発見率 UP、離職率 8%改善</p></div></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. 料金案内 (Pricing) -->
-        <section id="pricing" class="py-20 lg:py-28 bg-white snap-start">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center">
-                    <h2 class="text-base font-semibold text-green-700 tracking-wide uppercase">料金プラン</h2>
-                    <p class="mt-2 text-3xl lg:text-4xl font-extrabold tracking-tight text-gray-900">
-                        あなたの会社に最適なプランを。
-                    </p>
-                    <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">
-                        わかりやすい2つのプランをご用意しました。まずはスタンダードからお試しください。
-                    </p>
-                    <p class="mt-2 text-sm text-gray-500">※初期費用として、別途10万円（税別）がかかります。</p>
-                </div>
-
-                <div class="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-4xl mx-auto">
-                    <!-- スタンダードプラン -->
-                    <div class="flex flex-col rounded-2xl shadow-lg border border-gray-200">
-                        <div class="p-8">
-                            <h3 class="text-2xl font-bold text-gray-900">スタンダードプラン</h3>
-                            <p class="mt-3 text-gray-600">まずはAIの力を実感したい企業様向け</p>
-                            <div class="mt-6">
-                                <span class="text-5xl font-extrabold text-gray-900">月額 5<span class="text-3xl font-semibold">万円</span></span>
-                                <span class="text-lg font-medium text-gray-600">〜 (税別)</span>
-                            </div>
-                            <p class="mt-4 text-base text-gray-600">基本費用 5万円 +<br>従業員1名あたり @5,000円</p>
-                        </div>
-                        <div class="p-8 bg-gray-50 rounded-b-2xl flex-grow">
-                            <ul class="space-y-4">
-                                <li class="flex items-start"><i class="flex-shrink-0 w-6 h-6 text-green-600" data-lucide="check"></i><span class="ml-3 text-gray-700">AIチャット機能</span></li>
-                                <li class="flex items-start"><i class="flex-shrink-0 w-6 h-6 text-green-600" data-lucide="check"></i><span class="ml-3 text-gray-700">機能一覧の全機能（PRO版除く）</span></li>
-                                <li class="flex items-start"><i class="flex-shrink-0 w-6 h-6 text-green-600" data-lucide="check"></i><span class="ml-3 text-gray-700">社内ナレッジ学習</span></li>
-                                <li class="flex items-start"><i class="flex-shrink-0 w-6 h-6 text-green-600" data-lucide="check"></i><span class="ml-3 text-gray-700">メール・チャットサポート</span></li>
-                            </ul>
-                        </div>
-                        <div class="p-6">
-                            <a href="#contact" class="w-full inline-flex items-center justify-center px-6 py-3 text-lg font-medium text-white bg-gradient-to-r from-green-600 to-teal-500 rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 transition duration-300">このプランで相談する</a>
-                        </div>
-                    </div>
-
-                    <!-- PROプラン -->
-                    <div class="flex flex-col rounded-2xl shadow-lg border border-gray-200">
-                        <div class="p-8">
-                            <h3 class="text-2xl font-bold text-gray-900">PROプラン</h3>
-                            <p class="mt-3 text-gray-600">高度な財務分析や専門家サポートが必要な企業様向け</p>
-                            <div class="mt-6">
-                                <span class="text-5xl font-extrabold text-gray-900">月額 7<span class="text-3xl font-semibold">万円</span></span>
-                                <span class="text-lg font-medium text-gray-600">〜 (税別)</span>
-                            </div>
-                            <p class="mt-4 text-base text-gray-600">基本費用 7万円 +<br>従業員1名あたり @5,000円</p>
-                        </div>
-                        <div class="p-8 bg-gray-50 rounded-b-2xl flex-grow">
-                            <ul class="space-y-4">
-                                <li class="flex items-start"><i class="flex-shrink-0 w-6 h-6 text-green-600" data-lucide="check"></i><span class="ml-3 text-gray-700">スタンダードプランの全機能</span></li>
-                                <li class="flex items-start"><i class="flex-shrink-0 w-6 h-6 text-green-600" data-lucide="check"></i><span class="ml-3 font-semibold text-gray-900">高度な財務分析機能</span></li>
-                                <li class="flex items-start"><i class="flex-shrink-0 w-6 h-6 text-green-600" data-lucide="check"></i><span class="ml-3 font-semibold text-gray-900">金融機関・会計士向けレポート出力</span></li>
-                                <li class="flex items-start"><i class="flex-shrink-0 w-6 h-6 text-green-600" data-lucide="check"></i><span class="ml-3 text-gray-700">専門家によるオンラインサポート</span></li>
-                            </ul>
-                        </div>
-                        <div class="p-6">
-                            <a href="#contact" class="w-full inline-flex items-center justify-center px-6 py-3 text-lg font-medium text-green-700 bg-white rounded-lg shadow-md ring-1 ring-gray-200 hover:bg-gray-50 focus:outline-none focus:ring-4 focus:ring-gray-100 transition duration-300">PROプランで相談する</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 7. 料金シミュレーション (新設) -->
-        <section id="simulation" class="py-20 lg:py-28 bg-gradient-to-br from-green-700 to-teal-600 text-white snap-start">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center">
-                    <h2 class="text-3xl lg:text-4xl font-extrabold tracking-tight">
-                        料金シミュレーション
-                    </h2>
-                    <p class="mt-6 max-w-3xl mx-auto text-lg text-green-100">
-                        ご利用人数に合わせて、月額費用をすぐに試算できます。<br>
-                        （※初期費用として別途10万円がかかります）
+                        オタスケAIについて、お客様からよくいただくご質問をまとめました。
                     </p>
                 </div>
 
-                <div class="mt-16 max-w-2xl mx-auto bg-white text-gray-900 rounded-3xl shadow-2xl overflow-hidden">
-                    <div class="p-8 sm:p-12">
-                        <div class="space-y-8">
-                            <!-- 人数入力 -->
-                            <div>
-                                <label for="user-count" class="block text-sm font-medium text-gray-700 mb-2">ご利用人数</label>
-                                <div class="relative rounded-md shadow-sm">
-                                    <input type="number" name="user-count" id="user-count" class="focus:ring-green-500 focus:border-green-500 block w-full pl-4 pr-12 py-3 sm:text-lg border-gray-300 rounded-xl text-center font-bold" placeholder="例: 10" min="1" value="10">
-                                    <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
-                                        <span class="text-gray-500 sm:text-lg">名</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 結果表示エリア -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-gray-200">
-                                <!-- スタンダード -->
-                                <div class="bg-green-50 rounded-xl p-6 text-center border border-green-100">
-                                    <h4 class="text-sm font-bold text-gray-600 uppercase tracking-wide">スタンダードプラン月額</h4>
-                                    <p class="mt-2 text-3xl font-extrabold text-green-700">
-                                        <span id="standard-cost">100,000</span><span class="text-lg font-medium text-gray-500 ml-1">円</span>
+                <!-- FAQ Categories -->
+                <div class="space-y-8">
+                    <!-- カテゴリ1: サービス概要 -->
+                    <div>
+                        <h3 class="text-xl font-bold text-green-700 mb-4 flex items-center">
+                            <i data-lucide="info" class="w-5 h-5 mr-2"></i>
+                            サービス概要
+                        </h3>
+                        <div class="space-y-3">
+                            <details class="group bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                                <summary class="cursor-pointer px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                                    <span class="font-semibold text-gray-900 flex items-start">
+                                        <i data-lucide="help-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-600 flex-shrink-0"></i>
+                                        <span>オタスケAIとは何ですか？</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4"></i>
+                                </summary>
+                                <div class="px-6 py-4 bg-gray-50 border-t border-gray-100">
+                                    <p class="text-gray-700 leading-relaxed flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>
+                                        <span>オタスケAIは、中小企業向けの総合的なAIアシスタントサービスです。経営判断から日常業務まで、企業活動のあらゆる場面でAIがサポートします。補助金申請、経営分析、人材採用、営業支援など、50以上の専門機能を搭載しています。</span>
                                     </p>
-                                    <p class="mt-1 text-xs text-gray-500">50,000円 + (5,000円 × 人数)</p>
                                 </div>
-                                
-                                <!-- PRO -->
-                                <div class="bg-blue-50 rounded-xl p-6 text-center border border-blue-100">
-                                    <h4 class="text-sm font-bold text-gray-600 uppercase tracking-wide">PROプラン月額</h4>
-                                    <p class="mt-2 text-3xl font-extrabold text-blue-700">
-                                        <span id="pro-cost">120,000</span><span class="text-lg font-medium text-gray-500 ml-1">円</span>
+                            </details>
+
+                            <details class="group bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                                <summary class="cursor-pointer px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                                    <span class="font-semibold text-gray-900 flex items-start">
+                                        <i data-lucide="help-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-600 flex-shrink-0"></i>
+                                        <span>どのような企業に向いていますか？</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4"></i>
+                                </summary>
+                                <div class="px-6 py-4 bg-gray-50 border-t border-gray-100">
+                                    <p class="text-gray-700 leading-relaxed flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>
+                                        <span>従業員数5名〜300名程度の中小企業に最適です。製造業、飲食業、IT業、建設業、サービス業など、業種を問わずご利用いただけます。特に「人手不足」「業務効率化」「売上向上」に課題を感じている企業様におすすめです。</span>
                                     </p>
-                                    <p class="mt-1 text-xs text-gray-500">70,000円 + (5,000円 × 人数)</p>
                                 </div>
-                            </div>
-                            
-                            <div class="bg-gray-50 rounded-xl p-4 text-center">
-                                <p class="text-sm text-gray-600">
-                                    <span class="font-bold">初期費用: 100,000円</span> (プラン共通・税別)
-                                </p>
-                            </div>
+                            </details>
+
+                            <details class="group bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                                <summary class="cursor-pointer px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                                    <span class="font-semibold text-gray-900 flex items-start">
+                                        <i data-lucide="help-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-600 flex-shrink-0"></i>
+                                        <span>他のAIサービスとの違いは何ですか？</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4"></i>
+                                </summary>
+                                <div class="px-6 py-4 bg-gray-50 border-t border-gray-100">
+                                    <p class="text-gray-700 leading-relaxed flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>
+                                        <span>オタスケAIは、中小企業の経営課題に特化した専門AIです。汎用的なチャットAIと異なり、補助金申請や財務分析、採用支援など、企業経営に必要な実務機能を網羅しています。また、専門家によるサポート体制も充実しています。</span>
+                                    </p>
+                                </div>
+                            </details>
+
+                            <details class="group bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                                <summary class="cursor-pointer px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                                    <span class="font-semibold text-gray-900 flex items-start">
+                                        <i data-lucide="help-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-600 flex-shrink-0"></i>
+                                        <span>AIの知識がなくても使えますか？</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4"></i>
+                                </summary>
+                                <div class="px-6 py-4 bg-gray-50 border-t border-gray-100">
+                                    <p class="text-gray-700 leading-relaxed flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>
+                                        <span>はい、問題ありません。直感的な操作画面と日本語での会話形式のため、特別なITスキルは不要です。導入時には専任のサポート担当が使い方を丁寧にレクチャーしますので、ご安心ください。</span>
+                                    </p>
+                                </div>
+                            </details>
                         </div>
                     </div>
-                    <div class="bg-gray-100 px-8 py-4 text-center">
-                        <p class="text-xs text-gray-500">
-                            ※上記はシミュレーションであり、実際の契約内容により異なる場合があります。<br>
-                            詳細はお問い合わせください。
-                        </p>
+
+                    <!-- カテゴリ2: 料金・契約 -->
+                    <div>
+                        <h3 class="text-xl font-bold text-green-700 mb-4 flex items-center">
+                            <i data-lucide="credit-card" class="w-5 h-5 mr-2"></i>
+                            料金・契約
+                        </h3>
+                        <div class="space-y-3">
+                            <details class="group bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                                <summary class="cursor-pointer px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                                    <span class="font-semibold text-gray-900 flex items-start">
+                                        <i data-lucide="help-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-600 flex-shrink-0"></i>
+                                        <span>料金プランを教えてください。</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4"></i>
+                                </summary>
+                                <div class="px-6 py-4 bg-gray-50 border-t border-gray-100">
+                                    <p class="text-gray-700 leading-relaxed flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>
+                                        <span>スタンダードプラン（月額5万円〜）とPROプラン（月額7万円〜）の2つをご用意しています。基本料金に加えて、ご利用人数×5,000円/月が加算されます。初期費用として別途10万円が必要です。</span>
+                                    </p>
+                                </div>
+                            </details>
+
+                            <details class="group bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                                <summary class="cursor-pointer px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                                    <span class="font-semibold text-gray-900 flex items-start">
+                                        <i data-lucide="help-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-600 flex-shrink-0"></i>
+                                        <span>契約期間の縛りはありますか？</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4"></i>
+                                </summary>
+                                <div class="px-6 py-4 bg-gray-50 border-t border-gray-100">
+                                    <p class="text-gray-700 leading-relaxed flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>
+                                        <span>基本契約期間は1年間です。1年経過後は1ヶ月単位で自動更新となり、解約も1ヶ月前の通知でいつでも可能です。まずは3ヶ月のトライアル契約も承っております。</span>
+                                    </p>
+                                </div>
+                            </details>
+
+                            <details class="group bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                                <summary class="cursor-pointer px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                                    <span class="font-semibold text-gray-900 flex items-start">
+                                        <i data-lucide="help-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-600 flex-shrink-0"></i>
+                                        <span>途中でプラン変更は可能ですか？</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4"></i>
+                                </summary>
+                                <div class="px-6 py-4 bg-gray-50 border-t border-gray-100">
+                                    <p class="text-gray-700 leading-relaxed flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>
+                                        <span>はい、可能です。スタンダードプランからPROプランへのアップグレード、または利用人数の変更は、翌月から適用できます。</span>
+                                    </p>
+                                </div>
+                            </details>
+
+                            <details class="group bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                                <summary class="cursor-pointer px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                                    <span class="font-semibold text-gray-900 flex items-start">
+                                        <i data-lucide="help-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-600 flex-shrink-0"></i>
+                                        <span>支払い方法は何がありますか？</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4"></i>
+                                </summary>
+                                <div class="px-6 py-4 bg-gray-50 border-t border-gray-100">
+                                    <p class="text-gray-700 leading-relaxed flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>
+                                        <span>銀行振込（月払い・年払い）、口座振替、クレジットカード決済に対応しています。年払いの場合は、10%の割引が適用されます。</span>
+                                    </p>
+                                </div>
+                            </details>
+                        </div>
                     </div>
+
+                    <!-- カテゴリ3: 機能 -->
+                    <div>
+                        <h3 class="text-xl font-bold text-green-700 mb-4 flex items-center">
+                            <i data-lucide="settings" class="w-5 h-5 mr-2"></i>
+                            機能
+                        </h3>
+                        <div class="space-y-3">
+                            <details class="group bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                                <summary class="cursor-pointer px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                                    <span class="font-semibold text-gray-900 flex items-start">
+                                        <i data-lucide="help-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-600 flex-shrink-0"></i>
+                                        <span>補助金申請サポートはどこまで対応してくれますか？</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4"></i>
+                                </summary>
+                                <div class="px-6 py-4 bg-gray-50 border-t border-gray-100">
+                                    <p class="text-gray-700 leading-relaxed flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>
+                                        <span>公募要領の分析、申請書類のドラフト作成、必要書類のチェックリスト生成まで対応します。PROプランでは、専門家による申請書レビューも受けられます。</span>
+                                    </p>
+                                </div>
+                            </details>
+
+                            <details class="group bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                                <summary class="cursor-pointer px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                                    <span class="font-semibold text-gray-900 flex items-start">
+                                        <i data-lucide="help-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-600 flex-shrink-0"></i>
+                                        <span>会計ソフトとの連携は可能ですか？</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4"></i>
+                                </summary>
+                                <div class="px-6 py-4 bg-gray-50 border-t border-gray-100">
+                                    <p class="text-gray-700 leading-relaxed flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>
+                                        <span>はい、主要な会計ソフト（freee、マネーフォワード、弥生会計など）とAPI連携が可能です。試算表や決算書をアップロードするだけで、財務分析や経営レポートを自動作成できます。</span>
+                                    </p>
+                                </div>
+                            </details>
+
+                            <details class="group bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                                <summary class="cursor-pointer px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                                    <span class="font-semibold text-gray-900 flex items-start">
+                                        <i data-lucide="help-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-600 flex-shrink-0"></i>
+                                        <span>どのようなデータを学習させられますか？</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4"></i>
+                                </summary>
+                                <div class="px-6 py-4 bg-gray-50 border-t border-gray-100">
+                                    <p class="text-gray-700 leading-relaxed flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>
+                                        <span>社内マニュアル、過去の議事録、業務フロー、商品カタログ、営業資料など、テキストやPDF形式のドキュメントを学習させることができます。学習データは貴社専用の領域に保存され、他社と共有されることはありません。</span>
+                                    </p>
+                                </div>
+                            </details>
+
+                            <details class="group bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                                <summary class="cursor-pointer px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                                    <span class="font-semibold text-gray-900 flex items-start">
+                                        <i data-lucide="help-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-600 flex-shrink-0"></i>
+                                        <span>同時に何人まで利用できますか？</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4"></i>
+                                </summary>
+                                <div class="px-6 py-4 bg-gray-50 border-t border-gray-100">
+                                    <p class="text-gray-700 leading-relaxed flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>
+                                        <span>契約人数分のアカウントを同時にご利用いただけます。アカウントごとに権限設定が可能で、経営者向け、管理職向け、一般社員向けなど、役職に応じた機能制限も設定できます。</span>
+                                    </p>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+
+                    <!-- カテゴリ4: セキュリティ -->
+                    <div>
+                        <h3 class="text-xl font-bold text-green-700 mb-4 flex items-center">
+                            <i data-lucide="shield" class="w-5 h-5 mr-2"></i>
+                            セキュリティ
+                        </h3>
+                        <div class="space-y-3">
+                            <details class="group bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                                <summary class="cursor-pointer px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                                    <span class="font-semibold text-gray-900 flex items-start">
+                                        <i data-lucide="help-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-600 flex-shrink-0"></i>
+                                        <span>データのセキュリティは大丈夫ですか？</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4"></i>
+                                </summary>
+                                <div class="px-6 py-4 bg-gray-50 border-t border-gray-100">
+                                    <p class="text-gray-700 leading-relaxed flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>
+                                        <span>はい。データは全て暗号化され、ISO27001認証取得済みのデータセンターで厳重に管理されています。また、通信は全てSSL/TLSで暗号化されており、第三者による不正アクセスを防止しています。</span>
+                                    </p>
+                                </div>
+                            </details>
+
+                            <details class="group bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                                <summary class="cursor-pointer px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                                    <span class="font-semibold text-gray-900 flex items-start">
+                                        <i data-lucide="help-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-600 flex-shrink-0"></i>
+                                        <span>入力した情報は他社に使われませんか？</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4"></i>
+                                </summary>
+                                <div class="px-6 py-4 bg-gray-50 border-t border-gray-100">
+                                    <p class="text-gray-700 leading-relaxed flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>
+                                        <span>絶対にありません。お客様が入力したデータや学習させたドキュメントは、お客様専用の領域に保存され、AIモデルの学習にも一切使用されません。秘密保持契約（NDA）の締結も可能です。</span>
+                                    </p>
+                                </div>
+                            </details>
+
+                            <details class="group bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                                <summary class="cursor-pointer px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                                    <span class="font-semibold text-gray-900 flex items-start">
+                                        <i data-lucide="help-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-600 flex-shrink-0"></i>
+                                        <span>情報漏洩が心配なのですが...</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4"></i>
+                                </summary>
+                                <div class="px-6 py-4 bg-gray-50 border-t border-gray-100">
+                                    <p class="text-gray-700 leading-relaxed flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>
+                                        <span>多層防御のセキュリティ体制を構築しています。アクセスログの記録、IPアドレス制限、二段階認証、定期的な脆弱性診断など、金融機関レベルのセキュリティ対策を実施しています。</span>
+                                    </p>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+
+                    <!-- カテゴリ5: サポート -->
+                    <div>
+                        <h3 class="text-xl font-bold text-green-700 mb-4 flex items-center">
+                            <i data-lucide="headphones" class="w-5 h-5 mr-2"></i>
+                            サポート
+                        </h3>
+                        <div class="space-y-3">
+                            <details class="group bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                                <summary class="cursor-pointer px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                                    <span class="font-semibold text-gray-900 flex items-start">
+                                        <i data-lucide="help-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-600 flex-shrink-0"></i>
+                                        <span>導入時のサポートはありますか？</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4"></i>
+                                </summary>
+                                <div class="px-6 py-4 bg-gray-50 border-t border-gray-100">
+                                    <p class="text-gray-700 leading-relaxed flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>
+                                        <span>はい、専任のカスタマーサクセス担当が、導入から運用開始までを手厚くサポートします。初期設定、社内データの学習、従業員向け研修（オンライン）などを無料で提供しています。</span>
+                                    </p>
+                                </div>
+                            </details>
+
+                            <details class="group bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                                <summary class="cursor-pointer px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                                    <span class="font-semibold text-gray-900 flex items-start">
+                                        <i data-lucide="help-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-600 flex-shrink-0"></i>
+                                        <span>困ったときの問い合わせ方法は？</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4"></i>
+                                </summary>
+                                <div class="px-6 py-4 bg-gray-50 border-t border-gray-100">
+                                    <p class="text-gray-700 leading-relaxed flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>
+                                        <span>メール、チャット、電話での問い合わせに対応しています。スタンダードプランは平日10:00〜18:00、PROプランは平日9:00〜19:00のサポート時間となっています。</span>
+                                    </p>
+                                </div>
+                            </details>
+
+                            <details class="group bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                                <summary class="cursor-pointer px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                                    <span class="font-semibold text-gray-900 flex items-start">
+                                        <i data-lucide="help-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-600 flex-shrink-0"></i>
+                                        <span>操作方法を教えてもらえますか？</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4"></i>
+                                </summary>
+                                <div class="px-6 py-4 bg-gray-50 border-t border-gray-100">
+                                    <p class="text-gray-700 leading-relaxed flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>
+                                        <span>導入時の初期研修に加え、定期的なオンラインセミナーや個別相談会を開催しています。また、マニュアルサイトには動画チュートリアルも豊富に用意していますので、いつでも学習できます。</span>
+                                    </p>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+
+                    <!-- カテゴリ6: 導入・運用 -->
+                    <div>
+                        <h3 class="text-xl font-bold text-green-700 mb-4 flex items-center">
+                            <i data-lucide="play-circle" class="w-5 h-5 mr-2"></i>
+                            導入・運用
+                        </h3>
+                        <div class="space-y-3">
+                            <details class="group bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                                <summary class="cursor-pointer px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                                    <span class="font-semibold text-gray-900 flex items-start">
+                                        <i data-lucide="help-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-600 flex-shrink-0"></i>
+                                        <span>導入までにどのくらい時間がかかりますか？</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4"></i>
+                                </summary>
+                                <div class="px-6 py-4 bg-gray-50 border-t border-gray-100">
+                                    <p class="text-gray-700 leading-relaxed flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>
+                                        <span>お申し込みから最短2週間で運用開始できます。ご契約→初期設定（3日）→データ学習（1週間）→従業員研修（3日）→運用開始という流れです。お急ぎの場合は、個別にご相談ください。</span>
+                                    </p>
+                                </div>
+                            </details>
+
+                            <details class="group bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                                <summary class="cursor-pointer px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                                    <span class="font-semibold text-gray-900 flex items-start">
+                                        <i data-lucide="help-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-600 flex-shrink-0"></i>
+                                        <span>導入に必要な準備は何ですか？</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4"></i>
+                                </summary>
+                                <div class="px-6 py-4 bg-gray-50 border-t border-gray-100">
+                                    <p class="text-gray-700 leading-relaxed flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>
+                                        <span>インターネット接続環境とPCまたはスマートフォンがあれば利用可能です。特別なソフトウェアのインストールは不要で、Webブラウザからアクセスできます。</span>
+                                    </p>
+                                </div>
+                            </details>
+
+                            <details class="group bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                                <summary class="cursor-pointer px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition">
+                                    <span class="font-semibold text-gray-900 flex items-start">
+                                        <i data-lucide="help-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-600 flex-shrink-0"></i>
+                                        <span>無料トライアルはありますか？</span>
+                                    </span>
+                                    <i data-lucide="chevron-down" class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0 ml-4"></i>
+                                </summary>
+                                <div class="px-6 py-4 bg-gray-50 border-t border-gray-100">
+                                    <p class="text-gray-700 leading-relaxed flex items-start">
+                                        <i data-lucide="check-circle" class="w-5 h-5 mr-2 mt-0.5 text-green-500 flex-shrink-0"></i>
+                                        <span>はい、2週間の無料トライアルをご用意しています。主要機能を実際にお試しいただき、効果を体感してから本契約をご検討いただけます。</span>
+                                    </p>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA Box -->
+                <div class="mt-16 text-center p-8 bg-white rounded-2xl shadow-lg border-2 border-green-100">
+                    <div class="mb-4">
+                        <i data-lucide="message-circle" class="w-12 h-12 inline-block text-green-600"></i>
+                    </div>
+                    <p class="text-xl font-bold text-gray-900 mb-2">
+                        その他のご質問がございますか？
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        お気軽にお問い合わせください。専門スタッフが丁寧にご回答いたします。
+                    </p>
+                    <a href="#contact" class="inline-flex items-center justify-center px-8 py-3.5 text-lg font-medium text-white bg-gradient-to-r from-green-600 to-teal-500 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transform transition">
+                        お問い合わせはこちら
+                        <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+                    </a>
                 </div>
             </div>
         </section>
-
-        <!-- 8. お問い合わせ (CTA) -->
-        <section id="contact" class="py-20 lg:py-28 bg-white snap-start">
+        
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 lg:py-28 bg-white">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-3xl lg:text-4xl font-extrabold tracking-tight">
+                <h2 class="text-3xl lg:text-4xl font-extrabold">
                     <span class="block text-gray-900">さあ、あなたの会社にも</span>
-                    <span class="block gradient-text bg-gradient-to-r from-green-600 to-teal-500 mt-2">最高の「伴走者」を。</span>
+                    <span class="block bg-gradient-to-r from-green-600 to-teal-500 bg-clip-text text-transparent mt-2">最高の「伴走者」を。</span>
                 </h2>
                 <p class="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
-                    AI導入は「今」が最適です。
-                    「何から相談していいかわからない」という段階でも構いません。
-                    まずは貴社の課題を私たちにお聞かせください。専門のコンサルタントがAI活用の最適なプランをご提案します。
+                    AI導入は「今」が最適です。「何から相談していいかわからない」という段階でも構いません。
+                    まずは貴社の課題を私たちにお聞かせください。
                 </p>
                 <div class="mt-10">
-                    <a href="#" class="inline-flex items-center justify-center px-10 py-4 text-xl font-medium text-white bg-gradient-to-r from-green-600 to-teal-500 rounded-lg shadow-xl transform transition-transform hover:scale-105 duration-300 focus:outline-none focus:ring-4 focus:ring-green-300">
+                    <a href="#" class="inline-flex items-center justify-center px-10 py-4 text-xl font-medium text-white bg-gradient-to-r from-green-600 to-teal-500 rounded-lg shadow-xl hover:scale-105 transform transition">
                         導入について詳しく聞く
                         <i data-lucide="arrow-right" class="w-6 h-6 ml-3"></i>
                     </a>
@@ -594,124 +706,100 @@
         </section>
     </main>
 
-    <!-- 9. フッター -->
+    <!-- Footer -->
     <footer class="bg-gray-900 text-gray-400">
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <!-- ロゴ・会社情報 -->
                 <div>
-                    <div class="mb-4">
-                        <img src="uploaded:オタスケAI logo.png-fdfe2b96-ae73-43e2-b652-a1a5855b7812" alt="オタスケAI ロゴ" class="h-10 w-auto">
-                    </div>
-                    <p class="text-sm">株式会社西河マネジメントセンター</p>
-                    <p class="text-sm mt-2">〒618-0091<br>京都府乙訓郡大山崎町円明寺北浦2-6, 1-403</p>
+                    <span class="text-xl font-bold text-white">オタスケAI</span>
+                    <p class="text-sm mt-4">株式会社西河マネジメントセンター</p>
+                    <p class="text-sm mt-2">〒618-0091<br />京都府乙訓郡大山崎町円明寺北浦2-6, 1-403</p>
                 </div>
-                
-                <!-- ナビゲーション 1 -->
                 <div>
-                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">メニュー</h3>
-                    <ul class="mt-4 space-y-2">
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase mb-4">メニュー</h3>
+                    <ul class="space-y-2">
                         <li><a href="#features" class="text-sm hover:text-white transition">機能</a></li>
-                        <li><a href="#problem" class="text-sm hover:text-white transition">AI利用の格差</a></li>
-                        <li><a href="#how-to-use" class="text-sm hover:text-white transition">活用場面</a></li>
-                        <li><a href="#case-study" class="text-sm hover:text-white transition">活用事例</a></li>
+                        <li><a href="#faq" class="text-sm hover:text-white transition">FAQ</a></li>
                     </ul>
                 </div>
-
-                <!-- ナビゲーション 2 -->
                 <div>
-                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">プラン</h3>
-                    <ul class="mt-4 space-y-2">
-                        <li><a href="#pricing" class="text-sm hover:text-white transition">料金</a></li>
-                        <!-- [修正] リンク名を変更 -->
-                        <li><a href="#simulation" class="text-sm hover:text-white transition">シミュレーション</a></li>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase mb-4">お問い合わせ</h3>
+                    <ul class="space-y-2">
                         <li><a href="#contact" class="text-sm hover:text-white transition">お問い合わせ</a></li>
                     </ul>
                 </div>
-
-                <!-- 法務関連 -->
                 <div>
-                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">法務</h3>
-                    <ul class="mt-4 space-y-2">
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase mb-4">法務</h3>
+                    <ul class="space-y-2">
                         <li><a href="#" class="text-sm hover:text-white transition">プライバシーポリシー</a></li>
                         <li><a href="#" class="text-sm hover:text-white transition">利用規約</a></li>
-                        <li><a href="#" class="text-sm hover:text-white transition">特定商取引法に基づく表記</a></li>
                     </ul>
                 </div>
             </div>
-            
-            <!-- コピーライト -->
             <div class="mt-10 pt-8 border-t border-gray-800 text-sm text-center">
                 <p>&copy; 2024 Nishikawa Management Center Co., Ltd. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript 初期化スクリプト -->
+    <!-- JavaScript -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Lucide Iconsの初期化
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
+        // Initialize Lucide icons
+        if (window.lucide) {
+            lucide.createIcons();
+        }
 
-            // モバイルメニューのトグル
-            const menuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            if (menuButton && mobileMenu) {
-                menuButton.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-            }
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                // Re-initialize icons after DOM change
+                setTimeout(() => {
+                    if (window.lucide) {
+                        lucide.createIcons();
+                    }
+                }, 10);
+            });
+        }
 
-            // スムーススクロール
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
+        // Smooth scroll for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
                     e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        const headerOffset = 64; 
-                        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                        const offsetPosition = elementPosition - headerOffset; 
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const headerOffset = 64;
+                        const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = elementPosition - headerOffset;
 
                         window.scrollTo({
                             top: offsetPosition,
                             behavior: 'smooth'
                         });
-                        
-                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+
+                        // Close mobile menu if open
+                        if (mobileMenu) {
                             mobileMenu.classList.add('hidden');
                         }
                     }
-                });
+                }
             });
+        });
 
-            // [新規] 料金シミュレーションの計算ロジック
-            const userCountInput = document.getElementById('user-count');
-            const standardCostDisplay = document.getElementById('standard-cost');
-            const proCostDisplay = document.getElementById('pro-cost');
-
-            if (userCountInput && standardCostDisplay && proCostDisplay) {
-                const calculateCost = () => {
-                    const count = parseInt(userCountInput.value) || 0;
-                    const perUser = 5000;
-                    
-                    const standardBase = 50000;
-                    const proBase = 70000;
-
-                    const standardTotal = standardBase + (perUser * count);
-                    const proTotal = proBase + (perUser * count);
-
-                    standardCostDisplay.textContent = standardTotal.toLocaleString();
-                    proCostDisplay.textContent = proTotal.toLocaleString();
-                };
-
-                // 入力イベントリスナーを追加
-                userCountInput.addEventListener('input', calculateCost);
-            }
+        // Re-initialize icons when details are opened
+        document.querySelectorAll('details').forEach(detail => {
+            detail.addEventListener('toggle', () => {
+                setTimeout(() => {
+                    if (window.lucide) {
+                        lucide.createIcons();
+                    }
+                }, 10);
+            });
         });
     </script>
 </body>
