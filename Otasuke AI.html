@@ -394,6 +394,29 @@
       </div>
     </section>
 
+    <!-- Feature Modal -->
+    <div id="feature-modal" class="hidden fixed inset-0 z-[9999]">
+      <div class="flex items-center justify-center min-h-screen px-4 py-6">
+        <div class="fixed inset-0 bg-gray-900/75 backdrop-blur-sm" onclick="closeModal()"></div>
+        
+        <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl z-10">
+          <div class="bg-white px-6 pt-6 pb-6">
+            <div class="flex items-center justify-between mb-6">
+              <div class="flex items-center space-x-4">
+                <div id="modal-icon" class="flex items-center justify-center h-12 w-12 rounded-xl bg-green-600 text-white shadow-lg"></div>
+                <h3 id="modal-title" class="text-2xl font-bold text-gray-900"></h3>
+              </div>
+              <button onclick="closeModal()" class="rounded-full p-2 hover:bg-gray-100">
+                <i data-lucide="x" class="h-6 w-6 text-gray-500"></i>
+              </button>
+            </div>
+
+            <div id="modal-features" class="space-y-6 max-h-[70vh] overflow-y-auto pr-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Pricing Section -->
     <section id="pricing" class="py-20 lg:py-28 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -494,7 +517,7 @@
               </ul>
             </div>
             <div class="p-6">
-              <a href="https://share-na2.hsforms.com/1XF6oX86STRyBDznVypYQnQrc4yz" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center px-6 py-3 text-lg font-medium text-white bg-gradient-to-r from-green-600 to-teal-500 rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 transition duration-300">このプランで相談する</a>
+              <a href="https://share-na2.hsforms.com/1XF6oX86STRyBDznVypYQnQrc4yz" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center px-6 py-3 text-lg font-medium text-white bg-gradient-to-r from-green-600 to-teal-500 rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 transition duration-300">このプランで相談���る</a>
             </div>
           </div>
 
@@ -823,10 +846,163 @@
 
     userCountInput.addEventListener('input', updateCosts);
     
-    // Initialize icons after any DOM changes
-    setTimeout(() => {
-      lucide.createIcons();
-    }, 100);
+    // Feature Modal Data
+    const featureCategories = [
+      {
+        id: 0,
+        icon: 'building-2',
+        title: '経営・事業計画策定',
+        features: [
+          { icon: 'award', title: '経営力向上計画', desc: '（1チケット）中小企業等経営強化法に基づく経営力向上計画の作成をサポート。' },
+          { icon: 'rocket', title: '経営革新計画', desc: '（3チケット）新商品・新サービスの開発や新たな生産・販売方式の導入など、経営革新計画の策定を支援。' },
+          { icon: 'lightbulb', title: '補助金マッチング診断', desc: '貴社の状況に最適な補助金・助成金を自動診断。' },
+          { icon: 'file-text', title: '事業計画を作成', desc: '経営ビジョンから具体的なアクションプランまで、説得力のある事業計画書をAIが作成。' },
+          { icon: 'calculator', title: '収支計画を作成', desc: '売上予測から経費見積もりまで、リアルな収支計画をAIが作成。' }
+        ]
+      },
+      {
+        id: 1,
+        icon: 'banknote',
+        title: '補助金・助成金申請',
+        features: [
+          { icon: 'award', title: '小規模事業者持続化補助金', desc: '（1チケット）販路開拓や生産性向上の取り組みを支援する持続化補助金の申請書類をAIが作成。' },
+          { icon: 'award', title: 'ものづくり補助金', desc: '（2チケット）革新的な製品・サービス開発や生産プロセス改善のための設備投資を支援。' },
+          { icon: 'users', title: '人材開発支援助成金', desc: '（1チケット）従業員の教育訓練や能力開発に活用できる助成金の申請書類を作成。' },
+          { icon: 'briefcase', title: 'IT導入補助金', desc: '（1チケット）業務効率化や売上拡大に繋がるITツール導入費用を補助。' },
+          { icon: 'factory', title: '事業再構築補助金', desc: '（3チケット）新分野展開や業態転換など、思い切った事業再構築を支援。' }
+        ]
+      },
+      {
+        id: 2,
+        icon: 'line-chart',
+        title: '経営分析・課題解決',
+        features: [
+          { icon: 'brain', title: '経営課題・業務課題解決AI', desc: '経営や業務の課題をヒアリングし、AIが最適な解決策を提案。' },
+          { icon: 'dollar-sign', title: '事業価値シミュレーション', desc: '企業価値を算定し、将来の成長シナリオをシミュレーション。' },
+          { icon: 'bar-chart-3', title: '試算表/決算書から経営レポート作成', desc: '月次試算表や決算書をアップロードするだけで、経営状況を分析。' },
+          { icon: 'trending-up', title: '財務分析ダッシュボード', desc: '売上・利益・キャッシュフローを可視化し、改善ポイントを明示。' },
+          { icon: 'target', title: 'KPI設定・進捗管理', desc: '経営目標達成に必要なKPIを設定し、進捗を自動追跡。' }
+        ]
+      },
+      {
+        id: 3,
+        icon: 'bot',
+        title: '経営アシスタント・バックオフィス',
+        features: [
+          { icon: 'message-square', title: '経営アシスタント「まなぶ」', desc: '経営に関するあらゆる質問に即答するAIアシスタント。' },
+          { icon: 'file-text', title: '見積書・請求書・納品書AI', desc: '取引先情報と金額を入力するだけで、各種書類をAIが自動作成。' },
+          { icon: 'shield-check', title: '契約書チェッカーAI', desc: '契約書をアップロードするだけで、AIが不利な条項やリスク箇所を自動検出。' },
+          { icon: 'calendar', title: '議事録自動作成AI', desc: '会議の音声や要点を入力すると、AIが議事録を自動生成。' },
+          { icon: 'mail', title: 'メール文面生成AI', desc: '状況を伝えるだけで、適切なビジネスメールをAIが作成。' }
+        ]
+      },
+      {
+        id: 4,
+        icon: 'users',
+        title: '人材採用・組織管理',
+        features: [
+          { icon: 'heart', title: 'こころのコーチ「にこ」', desc: '従業員の日常会話やチャットからストレスレベルをAIが分析。' },
+          { icon: 'user-check', title: '人材特性テスト（トリセツ）', desc: '応募者や既存社員の性格特性・適性を診断。' },
+          { icon: 'user-plus', title: '採用条件生成アシスタント', desc: '募集したい人物像を入力すると、AIが最適な採用条件を提案。' },
+          { icon: 'clipboard-list', title: '求人票作成AI', desc: '職種と条件を入力するだけで、魅力的な求人票をAIが作成。' },
+          { icon: 'message-circle', title: '面接質問リスト生成', desc: '職種や求める人物像に合わせた面接質問をAIが提案。' },
+          { icon: 'award', title: '評価制度設計サポート', desc: '公平で納得感のある人事評価制度の設計をAIがサポート。' }
+        ]
+      },
+      {
+        id: 5,
+        icon: 'megaphone',
+        title: 'マーケティング・集客',
+        features: [
+          { icon: 'search', title: '市場調査AI', desc: '業界トレンドや競合分析をAIが自動実施。' },
+          { icon: 'zap', title: '集客ブースターAI', desc: 'Webサイトやチラシ、SNSなど、各媒体に最適な集客施策をAIが提案。' },
+          { icon: 'target', title: 'ペルソナ設定AI', desc: 'ターゲット顧客の詳細なペルソナをAIが作成。' },
+          { icon: 'layout', title: 'LP構成案作成AI', desc: '商品・サービスの特徴を入力すると、成約率の高いランディングページ構成をAIが提案。' },
+          { icon: 'edit', title: '広告コピー生成AI', desc: '商品の魅力を最大限に引き出す広告コピーをAIが自動生成。' },
+          { icon: 'share-2', title: 'SNS投稿文生成AI', desc: 'ブランドイメージに合ったSNS投稿文をAIが作成。' }
+        ]
+      },
+      {
+        id: 6,
+        icon: 'phone',
+        title: '営業支援・トレーニング',
+        features: [
+          { icon: 'phone', title: '営業電話トレーニング', desc: 'AIが見込み客役になって、テレアポや電話営業の練習相手に。' },
+          { icon: 'message-square', title: '営業トークスクリプト生成', desc: '商品・サービスの特徴を入力すると、AIが効果的な営業トークを自動作成。' },
+          { icon: 'presentation', title: '商談シミュレーション', desc: 'AIが難易度の異なる顧客を演じ、商談の練習相手に。' },
+          { icon: 'file-text', title: '提案書作成支援AI', desc: '顧客情報と提案内容を入力すると、説得力のある提案書をAIが作成。' },
+          { icon: 'bar-chart', title: '営業データ分析', desc: '成約率や商談期間を分析し、営業プロセス改善点をAIが提案。' }
+        ]
+      },
+      {
+        id: 7,
+        icon: 'book-open',
+        title: 'ナレッジマネジメント・教育',
+        features: [
+          { icon: 'message-square', title: '答えるAIアシスタント', desc: '社内マニュアルや規定、過去の議事録を学習したAIが、社員の質問に即答。' },
+          { icon: 'zap', title: '業務フロー生成AI', desc: '複雑な業務プロセスを図解・文書化。' },
+          { icon: 'graduation-cap', title: '新人教育支援AI', desc: '新入社員向けの研修カリキュラムや教材をAIが作成。' },
+          { icon: 'book', title: 'マニュアル自動作成AI', desc: '業務内容を伝えるだけで、わかりやすいマニュアルをAIが自動生成。' },
+          { icon: 'check-circle', title: '理解度テスト作成AI', desc: '研修内容に基づいた理解度確認テストをAIが作成。' }
+        ]
+      }
+    ];
+
+    // Feature Modal Functions
+    function openModal(categoryId) {
+      const category = featureCategories[categoryId];
+      const modal = document.getElementById('feature-modal');
+      const iconEl = document.getElementById('modal-icon');
+      const titleEl = document.getElementById('modal-title');
+      const featuresEl = document.getElementById('modal-features');
+
+      iconEl.innerHTML = '<i data-lucide="' + category.icon + '" class="h-6 w-6"></i>';
+      titleEl.textContent = category.title;
+      
+      featuresEl.innerHTML = category.features.map(function(f) {
+        return '<div class="flex gap-4 p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors">' +
+          '<div class="flex-shrink-0">' +
+            '<div class="flex items-center justify-center h-12 w-12 rounded-lg bg-green-600 text-white shadow-md">' +
+              '<i data-lucide="' + f.icon + '" class="h-6 w-6"></i>' +
+            '</div>' +
+          '</div>' +
+          '<div class="flex-1">' +
+            '<h4 class="text-lg font-bold text-gray-900">' + f.title + '</h4>' +
+            '<p class="mt-2 text-sm text-gray-600">' + f.desc + '</p>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      
+      setTimeout(function() {
+        lucide.createIcons();
+      }, 50);
+    }
+
+    function closeModal() {
+      document.getElementById('feature-modal').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // Add click event listeners to feature cards
+    window.addEventListener('DOMContentLoaded', function() {
+      const featureCards = document.querySelectorAll('#features .group');
+      featureCards.forEach(function(card, index) {
+        card.addEventListener('click', function() {
+          openModal(index);
+        });
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+      });
+      
+      setTimeout(function() {
+        lucide.createIcons();
+      }, 100);
+    });
   </script>
 </body>
 </html>
